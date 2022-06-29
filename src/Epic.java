@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Epic extends Task{
 
-    ArrayList<Integer> listOfSubtasks;
+    ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
     public HashMap<Integer, Epic> epics = new HashMap<>(); //храним все epic
 
     public Epic() {

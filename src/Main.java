@@ -20,6 +20,9 @@ public class Main {
         epic2Subtasks.add(5);
         Epic epic2 = new Epic("Новая большая задача Чистата в доме", "Порядок в доме", "NEW", epic2Subtasks);
 
+        Subtask subtask1 = new Subtask("Мини уборка", "Мини вымыть посуду на кухне", "NEW", 5);
+        Subtask subtask2 = new Subtask("Мини стирка", "Стрика футболки", "NEW", 4);
+
         manager.writeNewTask(task1);
         manager.writeNewTask(task2);
         manager.writeNewTask(task3);
@@ -46,6 +49,20 @@ public class Main {
         manager.updateEpicById(7, epic2);
         manager.deleteEpicById(12345);
         manager.deleteEpicById(7);
+
+        manager.writeNewSubtask(subtask1);
+        manager.printAllSubtask();
+        manager.deleteAllSubtask();
+        manager.printAllSubtask();
+        manager.writeNewSubtask(subtask1);
+        manager.getSubtaskById(123);
+        manager.getSubtaskById(9);
+        manager.updateSubtaskById(333, subtask2);
+        manager.updateSubtaskById(9, subtask2);
+        manager.printAllSubtask();
+        manager.deleteSubtaskById(345);
+        manager.deleteSubtaskById(9);
+        manager.printAllSubtask();
 
 
     }
