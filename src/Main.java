@@ -42,7 +42,10 @@ public class Main {
         manager.printAllEpic();
         manager.writeNewEpic(epic1);
         manager.getEpicById(7);
+        manager.updateEpicById(123, epic2);
         manager.updateEpicById(7, epic2);
+        manager.deleteEpicById(12345);
+        manager.deleteEpicById(7);
 
 
     }

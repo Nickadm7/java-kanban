@@ -46,7 +46,7 @@ public class Manager {
 
     public void deleteAllEpics(){
         epic.epics.clear();
-        System.out.println("Все Эпики успешно удалены!");
+        System.out.println("Все эпики успешно удалены!");
     }
 
     public void getTaskById(Integer idTask){
@@ -72,11 +72,9 @@ public class Manager {
     public void updateTaskById(Integer idTask, Task newTask){
         System.out.println("Обновляем задачу под id= " + idTask + " новое значение: ");
         if (task.tasks.get(idTask) != null){
-
             task.tasks.put(idTask, newTask);
             System.out.print("id = " + idTask + " ");
             System.out.println(task.tasks.get(idTask));
-
         } else {
             System.out.println("Такой задачи нет!");
         }
@@ -85,11 +83,9 @@ public class Manager {
     public void updateEpicById(Integer idEpic, Epic newEpic){
         System.out.println("Обновляем эпик под id= " + idEpic + " новое значение: ");
         if (epic.epics.get(idEpic) != null){
-
             epic.epics.put(idEpic, newEpic);
             System.out.print("id = " + idEpic + " ");
             System.out.println(epic.epics.get(idEpic));
-
         } else {
             System.out.println("Такого эпика нет!");
         }
@@ -98,13 +94,21 @@ public class Manager {
     public void deleteTaskById(Integer idTask){
         System.out.println("Удаляем задачу под id= " + idTask);
         if (task.tasks.get(idTask) != null){
-
             task.tasks.remove(idTask);
-
         } else {
             System.out.println("Такой задачи нет!");
         }
     }
+
+    public void deleteEpicById(Integer idEpic){
+        System.out.println("Удаляем эпик под id= " + idEpic);
+        if (epic.epics.get(idEpic) != null){
+            epic.epics.remove(idEpic);
+        } else {
+            System.out.println("Такого эпика нет!");
+        }
+    }
+
     public int generateNewId() {
         id++;
         return id;
