@@ -49,6 +49,7 @@ public class Main {
         manager.updateEpicById(7, epic2);
         manager.deleteEpicById(12345);
         manager.deleteEpicById(7);
+        manager.writeNewEpic(epic1);
 
         manager.writeNewSubtask(subtask1);
         manager.printAllSubtask();
@@ -56,13 +57,15 @@ public class Main {
         manager.printAllSubtask();
         manager.writeNewSubtask(subtask1);
         manager.getSubtaskById(123);
-        manager.getSubtaskById(9);
+        manager.getSubtaskById(10);
         manager.updateSubtaskById(333, subtask2);
-        manager.updateSubtaskById(9, subtask2);
+        manager.updateSubtaskById(10, subtask2);
         manager.printAllSubtask();
         manager.deleteSubtaskById(345);
-        manager.deleteSubtaskById(9);
+        manager.deleteSubtaskById(10);
         manager.printAllSubtask();
+
+        manager.getSubtaskForEpicById(8);
 
 
     }

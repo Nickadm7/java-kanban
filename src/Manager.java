@@ -161,6 +161,15 @@ public class Manager {
         }
     }
 
+    public void getSubtaskForEpicById(Integer idEpic){
+        System.out.println("Получаем список всех подзадач эпика по id= " + idEpic);
+        if (epic.epics.get(idEpic) != null) {
+            System.out.println("Для эпика с id " + idEpic + " подзадачи " + epic.epics.get(idEpic).listOfSubtasks);
+        } else {
+            System.out.println("Такого эпика нет!");
+        }
+    }
+
     public int generateNewId() {
         id++;
         return id;
