@@ -4,20 +4,22 @@ public class Manager {
     Task task = new Task();
     Epic epic = new Epic();
     Subtask subtask = new Subtask();
+    int counterSubtasks; // счетчик подзадач
+    int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
+    int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
 
     public void writeNewTask(Task newTask) {
-        System.out.println("Добавлена новая Task");
         task.tasks.put(generateNewId(), newTask);
     }
 
     public void writeNewEpic(Epic newEpic) {
-        System.out.println("Добавлена новая Epic");
         epic.epics.put(generateNewId(), newEpic);
+        determineAndSetCorrectEpicStatus();
     }
 
     public void writeNewSubtask(Subtask newSubtask) {
-        System.out.println("Добавлена новая Subtask");
         subtask.subtasks.put(generateNewId(), newSubtask);
+        determineAndSetCorrectEpicStatus();
     }
 
     public void printAllTask() {
@@ -59,6 +61,7 @@ public class Manager {
     public void deleteAllTasks() {
         task.tasks.clear();
         System.out.println("Все задачи успешно удалены!");
+        determineAndSetCorrectEpicStatus();
     }
 
     public void deleteAllEpics() {
@@ -69,6 +72,7 @@ public class Manager {
     public void deleteAllSubtask() {
         subtask.subtasks.clear();
         System.out.println("Все подзадачи успешно удалены!");
+        determineAndSetCorrectEpicStatus();
     }
 
     public void getTaskById(Integer idTask) {
@@ -110,6 +114,7 @@ public class Manager {
         } else {
             System.out.println("Такой задачи нет!");
         }
+        determineAndSetCorrectEpicStatus();
     }
 
     public void updateEpicById(Integer idEpic, Epic newEpic) {
@@ -132,6 +137,7 @@ public class Manager {
         } else {
             System.out.println("Такой подзадачи нет!");
         }
+        determineAndSetCorrectEpicStatus();
     }
 
     public void deleteTaskById(Integer idTask) {
@@ -141,6 +147,7 @@ public class Manager {
         } else {
             System.out.println("Такой задачи нет!");
         }
+        determineAndSetCorrectEpicStatus();
     }
 
     public void deleteEpicById(Integer idEpic) {
@@ -159,14 +166,45 @@ public class Manager {
         } else {
             System.out.println("Такой подзадачи нет!");
         }
+        determineAndSetCorrectEpicStatus();
     }
 
-    public void getSubtaskForEpicById(Integer idEpic){
+    public void getSubtaskForEpicById(Integer idEpic) {
         System.out.println("Получаем список всех подзадач эпика по id= " + idEpic);
         if (epic.epics.get(idEpic) != null) {
             System.out.println("Для эпика с id " + idEpic + " подзадачи " + epic.epics.get(idEpic).listOfSubtasks);
         } else {
             System.out.println("Такого эпика нет!");
+        }
+    }
+
+    public void determineAndSetCorrectEpicStatus() {
+        for (Integer key : epic.epics.keySet()) {
+            counterSubtasks = 0; // счетчик подзадач
+            counterSubtasksStatusNew = 0; // счетчик подзадач со статусом NEW
+            counterSubtasksStatusDone = 0; // счетчик подзадач со статусом DONE
+
+            epic.epics.get(key).status = "IN_PROGRESS"; // по-умолчанию статус IN_PROGRESS
+            if (epic.epics.get(key).listOfSubtasks.isEmpty()) {
+                epic.epics.get(key).status = "NEW";
+            }
+            for (Integer list : epic.epics.get(key).listOfSubtasks) {
+                counterSubtasks++;
+                if (subtask.subtasks.containsKey(list)) {
+                    if (subtask.subtasks.get(list).status.equals("NEW")) {
+                        counterSubtasksStatusNew++;
+                    }
+                    if (subtask.subtasks.get(list).status.equals("DONE")) {
+                        counterSubtasksStatusDone++;
+                    }
+                }
+            }
+            if (counterSubtasks == counterSubtasksStatusNew && counterSubtasks != 0) {
+                epic.epics.get(key).status = "NEW";
+            }
+            if (counterSubtasks == counterSubtasksStatusDone && counterSubtasks != 0) {
+                epic.epics.get(key).status = "DONE";
+            }
         }
     }
 
