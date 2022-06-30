@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Epic extends Task{
+public class Epic extends Task {
 
-    ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
-    public HashMap<Integer, Epic> epics = new HashMap<>(); //храним все epic
+    protected ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
+    protected HashMap<Integer, Epic> epics = new HashMap<>(); //храним все epic
 
     public Epic() {
     }

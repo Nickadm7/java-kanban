@@ -6,33 +6,36 @@ public class Main {
         Manager manager = new Manager();
         Task task1 = new Task("Уборка", "Вымыть посуду на кухне", "NEW");
         Task task2 = new Task("Стирка", "Убрать вещи из шкафа", "IN_PROGRESS");
-        ArrayList<Integer> epic1Subtasks = new ArrayList<>();
-        epic1Subtasks.add(5);
-        epic1Subtasks.add(6);
-        Epic epic1 = new Epic("Чистата в квартире", "Порядок в квартире", "IN_PROGRESS", epic1Subtasks);
-        ArrayList<Integer> epic2Subtasks = new ArrayList<>();
-        epic2Subtasks.add(6);
-        Epic epic2 = new Epic("Новая большая задача Чистата в доме", "Порядок в доме", "NEW", epic2Subtasks);
-        Subtask subtask1 = new Subtask("Мини уборка", "Мини вымыть посуду на кухне", "NEW", 3);
-        Subtask subtask2 = new Subtask("Мини уборка", "Мини вымыть посуду на кухне", "NEW", 3);
-        Subtask subtask3 = new Subtask("Мини уборка 1", "Мини вымыть посуду на кухне 1", "NEW", 4);
-        Subtask subtask4 = new Subtask("Мини уборка", "Мини вымыть посуду на кухне", "DONE", 3);
+        ArrayList<Integer> epicSubtasks1 = new ArrayList<>();
+        Epic epic1 = new Epic("Построить дом", "Построить дом 140 м2 из газобетона", "NEW", epicSubtasks1);
+        ArrayList<Integer> epicSubtasks2 = new ArrayList<>();
+        Epic epic2 = new Epic("Купить новую квартиру", "Покупка трехкомнатной квартиры в новостройке", "NEW", epicSubtasks2);
+        Subtask subtask1 = new Subtask("Участок", "Найти подходящий участок", "NEW", 3);
+        Subtask subtask2 = new Subtask("Проект", "Разработать проект дома", "NEW", 3);
+        Subtask subtask3 = new Subtask("Финансы", "Собрать нужную сумму денег", "NEW", 4);
+        Subtask subtask4 = new Subtask("Проект", "Разработать проект дома", "DONE", 3);
 
         manager.writeNewTask(task1);
         manager.writeNewTask(task2);
+        manager.getListOfAllTask();
         manager.writeNewEpic(epic1);
         manager.writeNewEpic(epic2);
+        manager.getListOfAllEpic();
         manager.writeNewSubtask(subtask1);
         manager.writeNewSubtask(subtask2);
         manager.writeNewSubtask(subtask3);
-        manager.printAllTask();
-        manager.printAllEpic();
-        manager.printAllSubtask();
+        manager.getListOfAllSubtask();
+        manager.getListOfAllEpic();
         manager.updateSubtaskById(6, subtask4);
         manager.getSubtaskForEpicById(3);
-        manager.printAllEpic();
-
-
+        manager.getListOfAllEpic();
+        manager.deleteSubtaskById(6);
+        manager.getListOfAllEpic();
+        manager.deleteSubtaskById(5);
+        manager.getListOfAllEpic();
+        manager.deleteEpicById(4);
+        manager.getListOfAllEpic();
+        manager.getListOfAllSubtask();
 
     }
 }

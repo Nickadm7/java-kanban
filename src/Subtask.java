@@ -2,8 +2,8 @@ import java.util.HashMap;
 
 public class Subtask extends Task {
 
-    Integer linkEpic; //номер связанного эпика для подзадачи
-    public HashMap<Integer, Subtask> subtasks = new HashMap<>(); //храним все подзадачи
+    protected Integer linkEpic; //номер связанного эпика для подзадачи
+    protected HashMap<Integer, Subtask> subtasks = new HashMap<>(); //храним все подзадачи
 
     public Subtask() {
     }

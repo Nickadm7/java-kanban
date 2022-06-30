@@ -2,10 +2,10 @@ import java.util.HashMap;
 
 public class Task {
 
-    String name; //название
-    String description; //описание
-    String status; //статус NEW, IN_PROGRESS, DONE
-    public HashMap<Integer, Task> tasks = new HashMap<>(); //храним все задачи
+    protected String name; //название
+    protected String description; //описание
+    protected String status; //статус NEW, IN_PROGRESS, DONE
+    protected HashMap<Integer, Task> tasks = new HashMap<>(); //храним все задачи
 
     public Task() {
     }
