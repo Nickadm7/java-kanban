@@ -1,3 +1,9 @@
+package management;
+
+import elements.Epic;
+import elements.Subtask;
+import elements.Task;
+
 import java.util.ArrayList;
 
 public class Manager {
@@ -42,10 +48,10 @@ public class Manager {
 
     public ArrayList<Task> getListOfAllTask() {
         if (task.getTasks().isEmpty()) {
-            System.out.println("Таблица Task пуста!");
+            System.out.println("Таблица elements.Task пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все Task:");
+            System.out.println("Печатаю все elements.Task:");
             for (Integer key : task.getTasks().keySet()) {
                 System.out.print("id = " + key + " ");
                 System.out.println(task.getTasks().get(key));
@@ -57,10 +63,10 @@ public class Manager {
 
     public ArrayList<Epic> getListOfAllEpic() {
         if (epic.getEpics().isEmpty()) {
-            System.out.println("Таблица Epic пуста!");
+            System.out.println("Таблица elements.Epic пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все Epic:");
+            System.out.println("Печатаю все elements.Epic:");
             for (Integer key : epic.getEpics().keySet()) {
                 System.out.print("id = " + key + " ");
                 System.out.println(epic.getEpics().get(key));
@@ -72,10 +78,10 @@ public class Manager {
 
     public ArrayList<Subtask> getListOfAllSubtask() {
         if (subtask.getSubtasks().isEmpty()) {
-            System.out.println("Таблица Subtask пуста!");
+            System.out.println("Таблица elements.Subtask пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все Subtask:");
+            System.out.println("Печатаю все elements.Subtask:");
             for (Integer key : subtask.getSubtasks().keySet()) {
                 System.out.print("id = " + key + " ");
                 System.out.println(subtask.getSubtasks().get(key));

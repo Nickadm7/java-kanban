@@ -1,3 +1,5 @@
+package elements;
+
 import java.util.HashMap;
 
 public class Subtask extends Task {
@@ -24,7 +26,7 @@ public class Subtask extends Task {
 
     @Override
     public String toString() {
-        return "Subtask{" +
+        return "elements.Subtask{" +
                 "linkEpic=" + linkEpic +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +

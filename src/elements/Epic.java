@@ -1,3 +1,5 @@
+package elements;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -17,7 +19,7 @@ public class Epic extends Task {
 
     @Override
     public String toString() {
-        return "Epic{" +
+        return "elements.Epic{" +
                 "listOfSubtasks=" + listOfSubtasks +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +

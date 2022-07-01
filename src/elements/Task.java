@@ -1,3 +1,5 @@
+package elements;
+
 import java.util.HashMap;
 
 public class Task {
@@ -39,7 +41,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
+        return "elements.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status='" + status + '\'' +
