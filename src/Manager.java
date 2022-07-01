@@ -216,13 +216,13 @@ public class Manager {
             if (epic.epics.get(key).listOfSubtasks.isEmpty()) {
                 epic.epics.get(key).status = "NEW";
             }
-            for (Integer list : epic.epics.get(key).listOfSubtasks) {
+            for (Integer currentSubtask : epic.epics.get(key).listOfSubtasks) {
                 counterSubtasks++;
-                if (subtask.subtasks.containsKey(list)) {
-                    if (subtask.subtasks.get(list).status.equals("NEW")) {
+                if (subtask.subtasks.containsKey(currentSubtask)) {
+                    if (subtask.subtasks.get(currentSubtask).status.equals("NEW")) {
                         counterSubtasksStatusNew++;
                     }
-                    if (subtask.subtasks.get(list).status.equals("DONE")) {
+                    if (subtask.subtasks.get(currentSubtask).status.equals("DONE")) {
                         counterSubtasksStatusDone++;
                     }
                 }
