@@ -2,17 +2,27 @@ import java.util.ArrayList;
 
 public class Manager {
 
-    private Integer id = 0;
-    private Task task = new Task();
-    private Epic epic = new Epic();
-    private Subtask subtask = new Subtask();
-    private ArrayList<Task> listOfAllTasks = new ArrayList<>();
-    private ArrayList<Epic> listOfAllEpic = new ArrayList<>();
-    private ArrayList<Subtask> listOfAllSubtask = new ArrayList<>();
+    private Integer id;
+    private Task task;
+    private Epic epic;
+    private Subtask subtask;
+    private ArrayList<Task> listOfAllTasks;
+    private ArrayList<Epic> listOfAllEpic;
+    private ArrayList<Subtask> listOfAllSubtask;
     private int counterSubtasks; // счетчик подзадач
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
+
+    public Manager() {
+        id = 0;
+        task = new Task();
+        epic = new Epic();
+        subtask = new Subtask();
+        listOfAllTasks = new ArrayList<>();
+        listOfAllEpic = new ArrayList<>();
+        listOfAllSubtask = new ArrayList<>();
+    }
 
     public void writeNewTask(Task newTask) {
         task.tasks.put(generateNewId(), newTask);
