@@ -227,10 +227,10 @@ public class Manager {
                     }
                 }
             }
-            if (counterSubtasks == counterSubtasksStatusNew && counterSubtasks != 0) {
+            if (counterSubtasks != 0 && counterSubtasks == counterSubtasksStatusNew) {
                 epic.epics.get(key).status = "NEW";
             }
-            if (counterSubtasks == counterSubtasksStatusDone && counterSubtasks != 0) {
+            if (counterSubtasks != 0 && counterSubtasks == counterSubtasksStatusDone) {
                 epic.epics.get(key).status = "DONE";
             }
         }
