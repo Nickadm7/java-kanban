@@ -237,8 +237,7 @@ public class Manager {
     }
 
     public int generateNewId() {
-        id++;
-        return id;
+        return ++id;
     }
 
 }
