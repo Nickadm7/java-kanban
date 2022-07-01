@@ -149,6 +149,7 @@ public class Manager {
         } else {
             System.out.println("Такого эпика нет!");
         }
+        determineAndSetCorrectEpicStatus();
     }
 
     public void updateSubtaskById(Integer idSubtask, Subtask newSubtask) {
