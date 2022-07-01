@@ -3,10 +3,11 @@ import java.util.HashMap;
 
 public class Epic extends Task {
 
-    protected ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
-    protected HashMap<Integer, Epic> epics = new HashMap<>(); //храним все epic
+    private ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
+    private HashMap<Integer, Epic> epics; //храним все epic
 
     public Epic() {
+        epics = new HashMap<>();
     }
 
     public Epic(String name, String description, String status, ArrayList<Integer> listOfSubtasks) {
@@ -18,9 +19,17 @@ public class Epic extends Task {
     public String toString() {
         return "Epic{" +
                 "listOfSubtasks=" + listOfSubtasks +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status='" + status + '\'' +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status='" + getStatus() + '\'' +
                 '}';
+    }
+
+    public HashMap<Integer, Epic> getEpics() {
+        return epics;
+    }
+
+    public ArrayList<Integer> getListOfSubtasks() {
+        return listOfSubtasks;
     }
 }

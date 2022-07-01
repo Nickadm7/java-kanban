@@ -2,10 +2,11 @@ import java.util.HashMap;
 
 public class Subtask extends Task {
 
-    protected Integer linkEpic; //номер связанного эпика для подзадачи
-    protected HashMap<Integer, Subtask> subtasks = new HashMap<>(); //храним все подзадачи
+    private Integer linkEpic; //номер связанного эпика для подзадачи
+    private HashMap<Integer, Subtask> subtasks; //храним все подзадачи
 
     public Subtask() {
+        subtasks = new HashMap<>();
     }
 
     public Subtask(String name, String description, String status, Integer linkEpic) {
@@ -13,13 +14,21 @@ public class Subtask extends Task {
         this.linkEpic = linkEpic;
     }
 
+    public HashMap<Integer, Subtask> getSubtasks() {
+        return subtasks;
+    }
+
+    public Integer getLinkEpic() {
+        return linkEpic;
+    }
+
     @Override
     public String toString() {
         return "Subtask{" +
                 "linkEpic=" + linkEpic +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", status='" + status + '\'' +
+                ", name='" + getName() + '\'' +
+                ", description='" + getDescription() + '\'' +
+                ", status='" + getStatus() + '\'' +
                 '}';
     }
 }
