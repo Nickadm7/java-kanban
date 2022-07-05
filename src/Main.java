@@ -40,6 +40,8 @@ public class Main {
         manager.getListOfAllEpic();
         manager.deleteEpicById(4);
         manager.getListOfAllEpic();
+        manager.deleteAllEpics();
+        manager.getListOfAllEpic();
         manager.getListOfAllSubtask();
 
     }
