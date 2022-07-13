@@ -1,6 +1,7 @@
 package management;
 
 import elements.Epic;
+import elements.Status;
 import elements.Subtask;
 import elements.Task;
 
@@ -228,9 +229,9 @@ public class Manager {
             counterSubtasksStatusNew = 0; // счетчик подзадач со статусом NEW
             counterSubtasksStatusDone = 0; // счетчик подзадач со статусом DONE
 
-            epics.get(key).setStatus("IN_PROGRESS"); // по-умолчанию статус IN_PROGRESS
+            epics.get(key).setStatus(Status.IN_PROGRESS); // по-умолчанию статус IN_PROGRESS
             if (epics.get(key).getListOfSubtasks().isEmpty()) {
-                epics.get(key).setStatus("NEW");
+                epics.get(key).setStatus(Status.NEW);
             }
             for (Integer currentSubtask : epics.get(key).getListOfSubtasks()) {
                 counterSubtasks++;
@@ -244,10 +245,10 @@ public class Manager {
                 }
             }
             if (counterSubtasks != 0 && counterSubtasks == counterSubtasksStatusNew) {
-                epics.get(key).setStatus("NEW");
+                epics.get(key).setStatus(Status.NEW);
             }
             if (counterSubtasks != 0 && counterSubtasks == counterSubtasksStatusDone) {
-                epics.get(key).setStatus("DONE");
+                epics.get(key).setStatus(Status.DONE);
             }
         }
     }

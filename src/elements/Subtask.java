@@ -3,7 +3,7 @@ package elements;
 public class Subtask extends Task {
     private Integer linkEpic; //номер связанного эпика для подзадачи
 
-    public Subtask(String name, String description, String status, Integer linkEpic) {
+    public Subtask(String name, String description, Status status, Integer linkEpic) {
         super(name, description, status);
         this.linkEpic = linkEpic;
     }

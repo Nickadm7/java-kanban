@@ -3,9 +3,9 @@ package elements;
 public class Task {
     private String name; //название
     private String description; //описание
-    private String status; //статус NEW, IN_PROGRESS, DONE
+    private Status status; //статус NEW, IN_PROGRESS, DONE
 
-    public Task(String name, String description, String status) {
+    public Task(String name, String description, Status status) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -19,11 +19,11 @@ public class Task {
         return description;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
@@ -32,7 +32,7 @@ public class Task {
         return "elements.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status='" + status + '\'' +
+                ", status='" + Status.values() + '\'' +
                 '}';
     }
 }
