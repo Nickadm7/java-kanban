@@ -2,14 +2,15 @@ import elements.Status;
 import elements.Epic;
 import elements.Subtask;
 import elements.Task;
-import management.Manager;
+import management.InMemoryTaskManager;
+import management.TaskManager;
 
 import java.util.ArrayList;
 
 public class Main {
 
     public static void main(String[] args) {
-        Manager manager = new Manager();
+        InMemoryTaskManager taskManager = new InMemoryTaskManager();
         Task task1 = new Task("Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);
         ArrayList<Integer> epicSubtasks1 = new ArrayList<>();
@@ -21,29 +22,29 @@ public class Main {
         Subtask subtask3 = new Subtask("Финансы", "Собрать нужную сумму денег", Status.NEW, 4);
         Subtask subtask4 = new Subtask("Проект", "Разработать проект дома", Status.DONE, 3);
 
-        manager.writeNewTask(task1);
-        manager.writeNewTask(task2);
-        manager.getListOfAllTask();
-        manager.writeNewEpic(epic1);
-        manager.writeNewEpic(epic2);
-        manager.getListOfAllEpic();
-        manager.writeNewSubtask(subtask1);
-        manager.writeNewSubtask(subtask2);
-        manager.writeNewSubtask(subtask3);
-        manager.getListOfAllSubtask();
-        manager.getListOfAllEpic();
-        manager.updateSubtaskById(6, subtask4);
-        manager.getSubtaskForEpicById(3);
-        manager.getListOfAllEpic();
-        manager.deleteSubtaskById(6);
-        manager.getListOfAllEpic();
-        manager.deleteSubtaskById(5);
-        manager.getListOfAllEpic();
-        manager.deleteEpicById(4);
-        manager.getListOfAllEpic();
-        manager.deleteAllEpics();
-        manager.getListOfAllEpic();
-        manager.getListOfAllSubtask();
+        taskManager.writeNewTask(task1);
+        taskManager.writeNewTask(task2);
+        taskManager.getListOfAllTask();
+        taskManager.writeNewEpic(epic1);
+        taskManager.writeNewEpic(epic2);
+        taskManager.getListOfAllEpic();
+        taskManager.writeNewSubtask(subtask1);
+        taskManager.writeNewSubtask(subtask2);
+        taskManager.writeNewSubtask(subtask3);
+        taskManager.getListOfAllSubtask();
+        taskManager.getListOfAllEpic();
+        taskManager.updateSubtaskById(6, subtask4);
+        taskManager.getSubtaskForEpicById(3);
+        taskManager.getListOfAllEpic();
+        taskManager.deleteSubtaskById(6);
+        taskManager.getListOfAllEpic();
+        taskManager.deleteSubtaskById(5);
+        taskManager.getListOfAllEpic();
+        taskManager.deleteEpicById(4);
+        taskManager.getListOfAllEpic();
+        taskManager.deleteAllEpics();
+        taskManager.getListOfAllEpic();
+        taskManager.getListOfAllSubtask();
 
     }
 }

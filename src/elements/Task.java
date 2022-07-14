@@ -32,7 +32,7 @@ public class Task {
         return "elements.Task{" +
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", status='" + Status.values() + '\'' +
+                ", status='" + getStatus() + '\'' +
                 '}';
     }
 }

@@ -8,7 +8,8 @@ import elements.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Manager {
+public class InMemoryTaskManager implements TaskManager {
+
     private Integer id;
     private HashMap<Integer, Task> tasks; //храним все задачи
     private HashMap<Integer, Epic> epics; //храним все epic
@@ -21,7 +22,7 @@ public class Manager {
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
 
-    public Manager() {
+    public InMemoryTaskManager() {
         id = 0;
         listOfAllTasks = new ArrayList<>();
         listOfAllEpic = new ArrayList<>();
@@ -31,15 +32,18 @@ public class Manager {
         subtasks = new HashMap<>();
     }
 
+    @Override
     public void writeNewTask(Task newTask) {
         tasks.put(generateNewId(), newTask);
     }
 
+    @Override
     public void writeNewEpic(Epic newEpic) {
         epics.put(generateNewId(), newEpic);
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public void writeNewSubtask(Subtask newSubtask) {
         currentId = generateNewId();
         subtasks.put(currentId, newSubtask);
@@ -47,6 +51,7 @@ public class Manager {
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public ArrayList<Task> getListOfAllTask() {
         if (tasks.isEmpty()) {
             System.out.println("Таблица elements.Task пуста!");
@@ -62,6 +67,7 @@ public class Manager {
         }
     }
 
+    @Override
     public ArrayList<Epic> getListOfAllEpic() {
         if (epics.isEmpty()) {
             System.out.println("Таблица elements.Epic пуста!");
@@ -77,6 +83,7 @@ public class Manager {
         }
     }
 
+    @Override
     public ArrayList<Subtask> getListOfAllSubtask() {
         if (subtasks.isEmpty()) {
             System.out.println("Таблица elements.Subtask пуста!");
@@ -92,23 +99,27 @@ public class Manager {
         }
     }
 
+    @Override
     public void deleteAllTasks() {
         tasks.clear();
         System.out.println("Все задачи успешно удалены!");
     }
 
+    @Override
     public void deleteAllEpics() {
         epics.clear();
         subtasks.clear(); //если удалить все эпики, то подзадачи тоже нужно удалить
         System.out.println("Все эпики успешно удалены!");
     }
 
+    @Override
     public void deleteAllSubtask() {
         subtasks.clear();
         System.out.println("Все подзадачи успешно удалены!");
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public Task getTaskById(Integer idTask) {
         System.out.println("Ищем задачу под номером " + idTask);
         if (tasks.get(idTask) != null) {
@@ -121,6 +132,7 @@ public class Manager {
         }
     }
 
+    @Override
     public Epic getEpicById(Integer idEpic) {
         System.out.println("Ищем эпик под номером " + idEpic);
         if (epics.get(idEpic) != null) {
@@ -133,6 +145,7 @@ public class Manager {
         }
     }
 
+    @Override
     public Subtask getSubtaskById(Integer idSubtask) {
         System.out.println("Ищем подзадачу под номером " + idSubtask);
         if (subtasks.get(idSubtask) != null) {
@@ -145,6 +158,7 @@ public class Manager {
         }
     }
 
+    @Override
     public void updateTaskById(Integer idTask, Task newTask) {
         System.out.println("Обновляем задачу под id= " + idTask + " новое значение: ");
         if (tasks.get(idTask) != null) {
@@ -157,6 +171,7 @@ public class Manager {
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public void updateEpicById(Integer idEpic, Epic newEpic) {
         System.out.println("Обновляем эпик под id= " + idEpic + " новое значение: ");
         if (epics.get(idEpic) != null) {
@@ -169,6 +184,7 @@ public class Manager {
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public void updateSubtaskById(Integer idSubtask, Subtask newSubtask) {
         System.out.println("Обновляем подзадачу под id= " + idSubtask + " новое значение: ");
         if (subtasks.get(idSubtask) != null) {
@@ -181,6 +197,7 @@ public class Manager {
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public void deleteTaskById(Integer idTask) {
         System.out.println("Удаляем задачу под id= " + idTask);
         if (tasks.get(idTask) != null) {
@@ -190,6 +207,7 @@ public class Manager {
         }
     }
 
+    @Override
     public void deleteEpicById(Integer idEpic) {
         //перед удалением эпика, сначала удаляем подзадачи, которые были с ним связаны
         for (Integer deleteSubtasksId : epics.get(idEpic).getListOfSubtasks()) {
@@ -203,6 +221,7 @@ public class Manager {
         }
     }
 
+    @Override
     public void deleteSubtaskById(Integer idSubtask) {
         System.out.println("Удаляем подзадачи под id= " + idSubtask);
         if (subtasks.get(idSubtask) != null) {
@@ -214,6 +233,7 @@ public class Manager {
         determineAndSetCorrectEpicStatus();
     }
 
+    @Override
     public void getSubtaskForEpicById(Integer idEpic) {
         System.out.println("Получаем список всех подзадач эпика по id= " + idEpic);
         if (epics.get(idEpic) != null) {
@@ -236,10 +256,10 @@ public class Manager {
             for (Integer currentSubtask : epics.get(key).getListOfSubtasks()) {
                 counterSubtasks++;
                 if (subtasks.containsKey(currentSubtask)) {
-                    if (subtasks.get(currentSubtask).getStatus().equals("NEW")) {
+                    if (subtasks.get(currentSubtask).getStatus() == Status.NEW) {
                         counterSubtasksStatusNew++;
                     }
-                    if (subtasks.get(currentSubtask).getStatus().equals("DONE")) {
+                    if (subtasks.get(currentSubtask).getStatus() == Status.DONE) {
                         counterSubtasksStatusDone++;
                     }
                 }
@@ -253,6 +273,7 @@ public class Manager {
         }
     }
 
+    @Override
     public int generateNewId() {
         return ++id;
     }
