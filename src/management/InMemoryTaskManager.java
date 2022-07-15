@@ -15,9 +15,6 @@ public class InMemoryTaskManager implements TaskManager {
     private HashMap<Integer, Task> tasks; //храним все задачи
     private HashMap<Integer, Epic> epics; //храним все epic
     private HashMap<Integer, Subtask> subtasks; //храним все подзадачи
-    private ArrayList<Task> listOfAllTasks;
-    private ArrayList<Epic> listOfAllEpic;
-    private ArrayList<Subtask> listOfAllSubtask;
     private int counterSubtasks; // счетчик подзадач
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
@@ -26,9 +23,6 @@ public class InMemoryTaskManager implements TaskManager {
 
     public InMemoryTaskManager() {
         id = 0;
-        listOfAllTasks = new ArrayList<>();
-        listOfAllEpic = new ArrayList<>();
-        listOfAllSubtask = new ArrayList<>();
         tasks = new HashMap<>();
         epics = new HashMap<>();
         subtasks = new HashMap<>();
@@ -54,50 +48,38 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Task> getListOfAllTask() {
+    public HashMap<Integer, Task> getListOfAllTask() {
         if (tasks.isEmpty()) {
             System.out.println("Таблица elements.Task пуста!");
             return null;
         } else {
             System.out.println("Печатаю все elements.Task:");
-            for (Integer key : tasks.keySet()) {
-                System.out.print("id = " + key + " ");
-                System.out.println(tasks.get(key));
-                listOfAllTasks.add(tasks.get(key));
-            }
-            return listOfAllTasks;
+            System.out.println(tasks.values());
+            return tasks;
         }
     }
 
     @Override
-    public ArrayList<Epic> getListOfAllEpic() {
+    public HashMap<Integer, Epic> getListOfAllEpic() {
         if (epics.isEmpty()) {
             System.out.println("Таблица elements.Epic пуста!");
             return null;
         } else {
             System.out.println("Печатаю все elements.Epic:");
-            for (Integer key : epics.keySet()) {
-                System.out.print("id = " + key + " ");
-                System.out.println(epics.get(key));
-                listOfAllEpic.add(epics.get(key));
-            }
-            return listOfAllEpic;
+            System.out.println(epics.values());
+            return epics;
         }
     }
 
     @Override
-    public ArrayList<Subtask> getListOfAllSubtask() {
+    public HashMap<Integer, Subtask> getListOfAllSubtask() {
         if (subtasks.isEmpty()) {
             System.out.println("Таблица elements.Subtask пуста!");
             return null;
         } else {
             System.out.println("Печатаю все elements.Subtask:");
-            for (Integer key : subtasks.keySet()) {
-                System.out.print("id = " + key + " ");
-                System.out.println(subtasks.get(key));
-                listOfAllSubtask.add(subtasks.get(key));
-            }
-            return listOfAllSubtask;
+            System.out.println(subtasks.values());
+            return subtasks;
         }
     }
 

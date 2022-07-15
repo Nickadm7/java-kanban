@@ -6,6 +6,7 @@ import elements.Subtask;
 import elements.Task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public interface TaskManager {
@@ -15,11 +16,11 @@ public interface TaskManager {
 
     void writeNewSubtask(Subtask newSubtask);
 
-    ArrayList<Task> getListOfAllTask();
+    HashMap<Integer, Task> getListOfAllTask();
 
-    public ArrayList<Epic> getListOfAllEpic();
+    HashMap<Integer, Epic> getListOfAllEpic();
 
-    public ArrayList<Subtask> getListOfAllSubtask();
+    HashMap<Integer, Subtask> getListOfAllSubtask();
 
     void deleteAllTasks();
 
