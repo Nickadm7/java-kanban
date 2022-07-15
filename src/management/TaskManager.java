@@ -49,6 +49,6 @@ public interface TaskManager {
 
     int generateNewId();
 
-    List<Task> getHistory();
+    List<Task> getCurrentHistory();
 
 }

@@ -2,6 +2,7 @@ import elements.Status;
 import elements.Epic;
 import elements.Subtask;
 import elements.Task;
+import management.InMemoryHistoryManager;
 import management.InMemoryTaskManager;
 import management.Managers;
 import management.TaskManager;
@@ -59,7 +60,7 @@ public class Main {
         taskManager.deleteAllEpics();
         taskManager.getListOfAllEpic();
         taskManager.getListOfAllSubtask();
-        taskManager.getHistory();
+        taskManager.getCurrentHistory();
 
     }
 }
