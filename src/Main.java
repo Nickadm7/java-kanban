@@ -3,6 +3,7 @@ import elements.Epic;
 import elements.Subtask;
 import elements.Task;
 import management.InMemoryTaskManager;
+import management.Managers;
 import management.TaskManager;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
-        InMemoryTaskManager taskManager = new InMemoryTaskManager();
+        TaskManager taskManager = Managers.getDefault();
         Task task1 = new Task("Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);
         ArrayList<Integer> epicSubtasks1 = new ArrayList<>();
