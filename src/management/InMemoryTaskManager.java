@@ -7,6 +7,7 @@ import elements.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
 
@@ -21,6 +22,7 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
+    private List<Task> history; //
 
     public InMemoryTaskManager() {
         id = 0;
@@ -30,6 +32,7 @@ public class InMemoryTaskManager implements TaskManager {
         tasks = new HashMap<>();
         epics = new HashMap<>();
         subtasks = new HashMap<>();
+        history = new ArrayList<>();
     }
 
     @Override
@@ -125,6 +128,7 @@ public class InMemoryTaskManager implements TaskManager {
         if (tasks.get(idTask) != null) {
             System.out.print("id = " + idTask + " ");
             System.out.println(tasks.get(idTask));
+            add(tasks.get(idTask));
             return tasks.get(idTask);
         } else {
             System.out.println("Такой задачи нет!");
@@ -138,6 +142,7 @@ public class InMemoryTaskManager implements TaskManager {
         if (epics.get(idEpic) != null) {
             System.out.print("id = " + idEpic + " ");
             System.out.println(epics.get(idEpic));
+            add(epics.get(idEpic));
             return epics.get(idEpic);
         } else {
             System.out.println("Такого эпика нет!");
@@ -151,6 +156,7 @@ public class InMemoryTaskManager implements TaskManager {
         if (subtasks.get(idSubtask) != null) {
             System.out.print("id = " + idSubtask + " ");
             System.out.println(subtasks.get(idSubtask));
+            add(subtasks.get(idSubtask));
             return subtasks.get(idSubtask);
         } else {
             System.out.println("Такой подзадачи нет!");
@@ -278,4 +284,21 @@ public class InMemoryTaskManager implements TaskManager {
         return ++id;
     }
 
+    @Override
+    public List<Task> getHistory() {
+        System.out.println("История просмотров пользователя:");
+        for (int i = 0; i < history.size(); i++) {
+            System.out.println((i + 1) + " " + history.get(i));
+        }
+        return history;
+    }
+
+    void add(Task task) {
+        if (history.size() < 10) {
+            history.add(task);
+        } else {
+            history.remove(0);
+            history.add(task);
+        }
+    }
 }

@@ -24,13 +24,26 @@ public class Main {
 
         taskManager.writeNewTask(task1);
         taskManager.writeNewTask(task2);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
+        taskManager.getTaskById(2);
         taskManager.getListOfAllTask();
         taskManager.writeNewEpic(epic1);
         taskManager.writeNewEpic(epic2);
+        taskManager.getEpicById(4);
+        taskManager.getEpicById(4);
         taskManager.getListOfAllEpic();
         taskManager.writeNewSubtask(subtask1);
         taskManager.writeNewSubtask(subtask2);
         taskManager.writeNewSubtask(subtask3);
+        taskManager.getSubtaskById(5);
         taskManager.getListOfAllSubtask();
         taskManager.getListOfAllEpic();
         taskManager.updateSubtaskById(6, subtask4);
@@ -45,6 +58,7 @@ public class Main {
         taskManager.deleteAllEpics();
         taskManager.getListOfAllEpic();
         taskManager.getListOfAllSubtask();
+        taskManager.getHistory();
 
     }
 }
