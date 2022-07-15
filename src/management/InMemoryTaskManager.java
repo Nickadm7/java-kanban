@@ -5,7 +5,6 @@ import elements.Status;
 import elements.Subtask;
 import elements.Task;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
