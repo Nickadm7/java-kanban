@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.List;
 
 public class InMemoryTaskManager implements TaskManager {
-
     private Integer id;
     private HashMap<Integer, Task> tasks; //храним все задачи
     private HashMap<Integer, Epic> epics; //храним все epic
