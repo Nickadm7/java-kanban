@@ -3,10 +3,11 @@ package management;
 import elements.Task;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private List<Task> history = new ArrayList<>(); //хранит историю просмотров
+    private List<Task> history = new LinkedList<>(); //хранит историю просмотров
     private final int NUMBER_OF_ENTRIES = 10; //количество записей хранимых в истории
 
     @Override
