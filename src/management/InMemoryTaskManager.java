@@ -108,6 +108,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idTask + " ");
             System.out.println(tasks.get(idTask));
             historyManager.add(tasks.get(idTask));
+            historyManager.addToHistoryNew(tasks.get(idTask));
             return tasks.get(idTask);
         } else {
             System.out.println("Такой задачи нет!");
@@ -122,6 +123,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idEpic + " ");
             System.out.println(epics.get(idEpic));
             historyManager.add(epics.get(idEpic));
+            historyManager.addToHistoryNew(epics.get(idEpic));
             return epics.get(idEpic);
         } else {
             System.out.println("Такого эпика нет!");
@@ -136,6 +138,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idSubtask + " ");
             System.out.println(subtasks.get(idSubtask));
             historyManager.add(subtasks.get(idSubtask));
+            historyManager.addToHistoryNew(subtasks.get(idSubtask)); // тест
             return subtasks.get(idSubtask);
         } else {
             System.out.println("Такой подзадачи нет!");
@@ -265,6 +268,7 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public List<Task> getCurrentHistory() {
+
         return historyManager.getHistory();
     }
 }

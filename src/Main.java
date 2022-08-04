@@ -2,6 +2,7 @@ import elements.Status;
 import elements.Epic;
 import elements.Subtask;
 import elements.Task;
+import management.InMemoryHistoryManager;
 import management.Managers;
 import management.TaskManager;
 
@@ -49,16 +50,17 @@ public class Main {
         taskManager.updateSubtaskById(6, subtask4);
         taskManager.getSubtaskForEpicById(3);
         taskManager.getListOfAllEpic();
-        taskManager.deleteSubtaskById(6);
-        taskManager.getListOfAllEpic();
-        taskManager.deleteSubtaskById(5);
-        taskManager.getListOfAllEpic();
-        taskManager.deleteEpicById(4);
-        taskManager.getListOfAllEpic();
-        taskManager.deleteAllEpics();
         taskManager.getListOfAllEpic();
         taskManager.getListOfAllSubtask();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
         taskManager.getCurrentHistory();
+
+
+
+
 
     }
 }
