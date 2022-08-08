@@ -108,7 +108,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idTask + " ");
             System.out.println(tasks.get(idTask));
             historyManager.add(tasks.get(idTask));
-            historyManager.addToHistoryNew(tasks.get(idTask));
+            historyManager.addToHistoryNew(idTask, tasks.get(idTask));
             return tasks.get(idTask);
         } else {
             System.out.println("Такой задачи нет!");
@@ -123,7 +123,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idEpic + " ");
             System.out.println(epics.get(idEpic));
             historyManager.add(epics.get(idEpic));
-            historyManager.addToHistoryNew(epics.get(idEpic));
+            historyManager.addToHistoryNew(idEpic, epics.get(idEpic));
             return epics.get(idEpic);
         } else {
             System.out.println("Такого эпика нет!");
@@ -138,7 +138,7 @@ public class InMemoryTaskManager implements TaskManager {
             System.out.print("id = " + idSubtask + " ");
             System.out.println(subtasks.get(idSubtask));
             historyManager.add(subtasks.get(idSubtask));
-            historyManager.addToHistoryNew(subtasks.get(idSubtask)); // тест
+            historyManager.addToHistoryNew(idSubtask, subtasks.get(idSubtask));
             return subtasks.get(idSubtask);
         } else {
             System.out.println("Такой подзадачи нет!");
@@ -189,6 +189,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void deleteTaskById(Integer idTask) {
         System.out.println("Удаляем задачу под id= " + idTask);
         if (tasks.get(idTask) != null) {
+            historyManager.remove(idTask);
             tasks.remove(idTask);
         } else {
             System.out.println("Такой задачи нет!");
@@ -197,12 +198,14 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void deleteEpicById(Integer idEpic) {
-        //перед удалением эпика, сначала удаляем подзадачи, которые были с ним связаны
+        //перед удалением эпика, сначала удаляем подзадачи, которые были с ним связаны и историю
         for (Integer deleteSubtasksId : epics.get(idEpic).getListOfSubtasks()) {
+            historyManager.remove(deleteSubtasksId);
             subtasks.remove(deleteSubtasksId);
         }
         System.out.println("Удаляем эпик под id= " + idEpic);
         if (epics.get(idEpic) != null) {
+            historyManager.remove(idEpic);
             epics.remove(idEpic);
         } else {
             System.out.println("Такого эпика нет!");
@@ -214,6 +217,7 @@ public class InMemoryTaskManager implements TaskManager {
         System.out.println("Удаляем подзадачи под id= " + idSubtask);
         if (subtasks.get(idSubtask) != null) {
             epics.get(subtasks.get(idSubtask).getLinkEpic()).getListOfSubtasks().remove(idSubtask); // удаляем из эпика id нашей подзадачи
+            historyManager.remove(idSubtask);
             subtasks.remove(idSubtask);
         } else {
             System.out.println("Такой подзадачи нет!");
