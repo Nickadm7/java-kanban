@@ -1,15 +1,14 @@
 package management;
 
+import elements.Node;
 import elements.Task;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface HistoryManager {
-    void add(Task task); //страя история на 10 просмотров с повторами
-
     void remove(int id);
 
-    List<Task> getHistory();
+    ArrayList<Node> getHistory();
 
-    void addToHistoryNew(Integer id, Task task);
+    void add(Integer id, Task task);
 }

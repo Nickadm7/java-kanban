@@ -8,13 +8,11 @@ import management.TaskManager;
 import java.util.ArrayList;
 
 public class Main {
-
     public static void main(String[] args) {
         TaskManager taskManager = Managers.getDefault();
         Task task1 = new Task("1 Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("2 Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);
         Task task3 = new Task("СтиркаNew", "Убрать вещи из шкафаNew", Status.DONE);
-
         ArrayList<Integer> epicSubtasks1 = new ArrayList<>();
         Epic epic1 = new Epic("3 Построить дом", "Построить дом 140 м2 из газобетона", Status.NEW, epicSubtasks1);
         ArrayList<Integer> epicSubtasks2 = new ArrayList<>();
@@ -23,7 +21,7 @@ public class Main {
         Subtask subtask2 = new Subtask("7 Проект", "Разработать проект дома", Status.NEW, 3);
         Subtask subtask3 = new Subtask("8 Финансы", "Собрать нужную сумму денег", Status.NEW, 3);
         Subtask subtask4 = new Subtask("9 Проект", "Разработать проект дома", Status.DONE, 5);
-        // Исходные данные для тестирования
+        // Тестирование
         taskManager.writeNewTask(task1);
         taskManager.writeNewTask(task2);
         taskManager.writeNewEpic(epic1);

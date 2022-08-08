@@ -6,53 +6,29 @@ import elements.Task;
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
-    private List<Task> history = new LinkedList<>(); // история 10 просмотров с повторами
-    private CustomLinkedList<Task> historyUtil = new CustomLinkedList(); // историю просмотров без повторов
+    private CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
     private ArrayList<Node> historyOut = new ArrayList<>();
     private Map<Integer, Node> linkIdNode = new HashMap<>();
-    private final int NUMBER_OF_ENTRIES = 10; //количество записей хранимых в истории
 
     @Override
-    public List<Task> getHistory() {
-        System.out.println();
-        System.out.println("Старый формат истории просмотров пользователя:");
-        for (int i = 0; i < history.size(); i++) {
-            System.out.println(history.get(i));
-        }
-        System.out.println();
-        historyUtil.getTasks();
-        return history;
-    }
-
-    @Override
-    public void add(Task task) {
-        if (history.isEmpty()) {
-            history.add(task);
-        } else {
-            if (history.size() < NUMBER_OF_ENTRIES) {
-                history.add(task);
-            } else {
-                history.remove(0);
-                history.add(task);
-            }
-        }
+    public ArrayList<Node> getHistory() {
+        return history.getTasks();
     }
 
     @Override
     public void remove(int id) {
-        historyUtil.removeNode(linkIdNode.get(id)); // удаляем Node из двусвязанного списка
+        history.removeNode(linkIdNode.get(id)); // удаляем Node из двусвязанного списка
         linkIdNode.remove(id); // удаляем запись о Node из Map
     }
 
     class CustomLinkedList<T> {
-        public Node<T> head;
-        public Node<T> tail;
+        private Node<T> head;
+        private Node<T> tail;
         private int size = 0;
 
-        Node linkLast(Task task) {
+        public Node linkLast(Task task) {
             Node oldTail = tail;
             Node newNode = new Node(task);
-            //linkIdNode.put(id, newNode);
             tail = newNode;
             if (oldTail == null) {
                 head = newNode;
@@ -64,21 +40,19 @@ public class InMemoryHistoryManager implements HistoryManager {
             return newNode;
         }
 
-        ArrayList<Node> getTasks() {
+        public ArrayList<Node> getTasks() {
             historyOut.clear();
-            int count = 0;
             historyOut.add(head);
             Node current = head.next;
             while (current != null) {
                 historyOut.add(current);
                 current = current.next;
-                count++;
             }
+            System.out.println();
             System.out.println("History Список перелинкованных Node" + historyOut);
             System.out.println("History Список Node хранятся в HashMap" + linkIdNode);
             return historyOut;
         }
-
 
         public void removeNode(Node node) {
             if (node.prev != null) {
@@ -103,13 +77,11 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
-    public void addToHistoryNew(Integer id, Task task) {
+    public void add(Integer id, Task task) {
         if (linkIdNode.containsKey(id)) {
-            historyUtil.removeNode(linkIdNode.get(id));
+            history.removeNode(linkIdNode.get(id));
             linkIdNode.remove(id);
-            linkIdNode.put(id, historyUtil.linkLast(task));
-        } else {
-            linkIdNode.put(id, historyUtil.linkLast(task));
         }
+        linkIdNode.put(id, history.linkLast(task));
     }
 }
