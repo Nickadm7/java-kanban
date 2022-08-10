@@ -24,7 +24,6 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     private CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
-    private ArrayList<Node> historyOut = new ArrayList<>();
     private Map<Integer, Node> linkIdNode = new HashMap<>();
 
     @Override
@@ -58,7 +57,7 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         public ArrayList<Node> getTasks() {
-            historyOut.clear();
+            ArrayList<Node> historyOut = new ArrayList<>();
             historyOut.add(head);
             Node current = head.next;
             while (current != null) {
