@@ -46,10 +46,7 @@ public class Main {
         taskManager.getSubtaskById(7);
         taskManager.getCurrentHistory();
         // Удаляем Epic и проверяем удаление его Subtask
-        //taskManager.deleteEpicById(3);
-        //taskManager.deleteAllTasks();
-        taskManager.deleteAllSubtask();
-        taskManager.deleteAllEpics();
+        taskManager.deleteEpicById(3);
         taskManager.getCurrentHistory();
     }
 }

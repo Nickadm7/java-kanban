@@ -1,7 +1,7 @@
 package management;
 
 import elements.Epic;
-import elements.Node;
+
 import elements.Subtask;
 import elements.Task;
 
@@ -49,5 +49,5 @@ public interface TaskManager {
 
     int generateNewId();
 
-    ArrayList<Node> getCurrentHistory();
+    ArrayList<InMemoryHistoryManager.Node> getCurrentHistory();
 }

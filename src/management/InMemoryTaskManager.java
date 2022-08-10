@@ -274,8 +274,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Node> getCurrentHistory() {
-
+    public ArrayList<InMemoryHistoryManager.Node> getCurrentHistory() {
         return historyManager.getHistory();
     }
 }

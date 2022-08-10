@@ -1,11 +1,28 @@
 package management;
 
-import elements.Node;
 import elements.Task;
 
 import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
+
+    public static class Node<T> {
+        public T data;
+        public Node next;
+        public Node prev;
+
+        public Node(T data) {
+            this.data = data;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "data=" + data +
+                    '}';
+        }
+    }
+
     private CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
     private ArrayList<Node> historyOut = new ArrayList<>();
     private Map<Integer, Node> linkIdNode = new HashMap<>();
