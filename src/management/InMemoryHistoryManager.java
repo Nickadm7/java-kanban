@@ -32,6 +32,15 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
+    public void add(Integer id, Task task) {
+        if (linkIdNode.containsKey(id)) {
+            history.removeNode(linkIdNode.get(id));
+            linkIdNode.remove(id);
+        }
+        linkIdNode.put(id, history.linkLast(task));
+    }
+
+    @Override
     public void remove(int id) {
         history.removeNode(linkIdNode.get(id)); // удаляем Node из двусвязанного списка
         linkIdNode.remove(id); // удаляем запись о Node из Map
@@ -99,14 +108,5 @@ public class InMemoryHistoryManager implements HistoryManager {
                     ", size=" + size +
                     '}';
         }
-    }
-
-    @Override
-    public void add(Integer id, Task task) {
-        if (linkIdNode.containsKey(id)) {
-            history.removeNode(linkIdNode.get(id));
-            linkIdNode.remove(id);
-        }
-        linkIdNode.put(id, history.linkLast(task));
     }
 }
