@@ -80,19 +80,28 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void deleteAllTasks() {
+        for (Integer key : tasks.keySet()) {
+            historyManager.remove(key);
+        }
         tasks.clear();
         System.out.println("Все задачи успешно удалены!");
     }
 
     @Override
     public void deleteAllEpics() {
+        deleteAllSubtask();
+        for (Integer key : epics.keySet()) {
+            historyManager.remove(key);
+        }
         epics.clear();
-        subtasks.clear(); //если удалить все эпики, то подзадачи тоже нужно удалить
         System.out.println("Все эпики успешно удалены!");
     }
 
     @Override
     public void deleteAllSubtask() {
+        for (Integer key : subtasks.keySet()) {
+            historyManager.remove(key);
+        }
         subtasks.clear();
         System.out.println("Все подзадачи успешно удалены!");
         determineAndSetCorrectEpicStatus();
