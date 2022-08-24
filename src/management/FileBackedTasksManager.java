@@ -63,7 +63,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 Integer key = entry.getKey();
                 Task value = entry.getValue();
 
-                bufferedWriter.write(key + "," + TaskType.TASK + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + ",");
+                bufferedWriter.write(value.getId() + "," + TaskType.TASK + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + ",");
                 bufferedWriter.newLine();
             }
 
@@ -71,7 +71,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 Integer key = entry.getKey();
                 Task value = entry.getValue();
 
-                bufferedWriter.write(key + "," + TaskType.EPIC + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + "," + ((Epic) value).getListOfSubtasks());
+                bufferedWriter.write(value.getId() + "," + TaskType.EPIC + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + "," + ((Epic) value).getListOfSubtasks());
                 bufferedWriter.newLine();
             }
 
@@ -79,7 +79,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 Integer key = entry.getKey();
                 Task value = entry.getValue();
 
-                bufferedWriter.write(key + "," + TaskType.SUBTASK + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + "," + ((Subtask) value).getLinkEpic());
+                bufferedWriter.write(value.getId() + "," + TaskType.SUBTASK + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + "," + ((Subtask) value).getLinkEpic());
                 bufferedWriter.newLine();
             }
             bufferedWriter.newLine();

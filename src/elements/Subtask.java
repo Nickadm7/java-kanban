@@ -16,7 +16,9 @@ public class Subtask extends Task {
     public String toString() {
         return "elements.Subtask{" +
                 "linkEpic=" + linkEpic +
+                ", id='" + getId() + '\'' +
                 ", name='" + getName() + '\'' +
+                ", TaskType='" + getTaskType() + '\'' +
                 ", description='" + getDescription() + '\'' +
                 ", status='" + getStatus() + '\'' +
                 '}';

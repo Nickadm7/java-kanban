@@ -41,7 +41,6 @@ public class InMemoryHistoryManager implements HistoryManager {
         }
 
         out = outOnlyId.toString();
-        System.out.println("История только id " + out);
         return out;
 
     }

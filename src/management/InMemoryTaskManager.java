@@ -5,6 +5,8 @@ import elements.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static elements.TaskType.*;
+
 public class InMemoryTaskManager implements TaskManager {
     private Integer id;
     public HashMap<Integer, Task> tasks; //храним все задачи
@@ -37,20 +39,28 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void writeNewTask(Task newTask) {
-        tasks.put(generateNewId(), newTask);
+        Integer bufferId = generateNewId();
+        newTask.setId(bufferId);
+        newTask.setTaskType(TASK);
+        tasks.put(bufferId, newTask);
     }
 
     @Override
     public void writeNewEpic(Epic newEpic) {
-        epics.put(generateNewId(), newEpic);
+        Integer bufferId = generateNewId();
+        newEpic.setId(bufferId);
+        newEpic.setTaskType(EPIC);
+        epics.put(bufferId, newEpic);
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public void writeNewSubtask(Subtask newSubtask) {
-        currentId = generateNewId();
-        subtasks.put(currentId, newSubtask);
-        epics.get(subtasks.get(currentId).getLinkEpic()).getListOfSubtasks().add(currentId); // добавляем к эпику ссылку на новую подзадачу
+        Integer bufferId = generateNewId();
+        newSubtask.setId(bufferId);
+        newSubtask.setTaskType(SUBTASK);
+        subtasks.put(bufferId, newSubtask);
+        epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
         determineAndSetCorrectEpicStatus();
     }
 
