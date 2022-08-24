@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class InMemoryTaskManager implements TaskManager {
     private Integer id;
-    private HashMap<Integer, Task> tasks; //храним все задачи
+    public HashMap<Integer, Task> tasks; //храним все задачи
     private HashMap<Integer, Epic> epics; //храним все epic
     private HashMap<Integer, Subtask> subtasks; //храним все подзадачи
     private int counterSubtasks; // счетчик подзадач
@@ -289,4 +289,9 @@ public class InMemoryTaskManager implements TaskManager {
     public ArrayList<InMemoryHistoryManager.Node> getCurrentHistory() {
         return historyManager.getHistory();
     }
+
+    public String getCurrentHistoryOnlyId() {
+        return historyManager.getHistoryOnlyId();
+    }
+
 }

@@ -21,7 +21,7 @@ public class Main {
         Subtask subtask1 = new Subtask("6 Участок", "Найти подходящий участок", Status.NEW, 3);
         Subtask subtask2 = new Subtask("7 Проект", "Разработать проект дома", Status.NEW, 3);
         Subtask subtask3 = new Subtask("8 Финансы", "Собрать нужную сумму денег", Status.NEW, 3);
-        Subtask subtask4 = new Subtask("9 Проект", "Разработать проект дома", Status.DONE, 5);
+        //Subtask subtask4 = new Subtask("9 Проект", "Разработать проект дома", Status.DONE, 5);
         // Тестирование
         taskManager.writeNewTask(task1);
         taskManager.writeNewTask(task2);
@@ -38,8 +38,8 @@ public class Main {
         taskManager.getTaskById(1);
         taskManager.getCurrentHistory();
         // Удаляем Task и проверяем порядок
-        taskManager.deleteTaskById(1);
-        taskManager.getCurrentHistory();
+        //taskManager.deleteTaskById(1);
+        //taskManager.getCurrentHistory();
         // Запрашиваем Epic и Subtask и проверяем порядок
         taskManager.getEpicById(3);
         taskManager.getEpicById(4);
@@ -47,10 +47,13 @@ public class Main {
         taskManager.getSubtaskById(6);
         taskManager.getSubtaskById(7);
         taskManager.getCurrentHistory();
-        // Удаляем Epic и проверяем удаление его Subtask
-        taskManager.deleteEpicById(3);
-        taskManager.getCurrentHistory();
 
+        // Удаляем Epic и проверяем удаление его Subtask
+        //taskManager.deleteEpicById(3);
+        //taskManager.getCurrentHistory();
+        Task task4 = new Task("555 СтиркаNew", "Убрать вещи из шкафаNew", Status.DONE);
+        taskManager.getCurrentHistory();
+        taskManager.getTaskById(2);
 
     }
 }

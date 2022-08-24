@@ -31,6 +31,21 @@ public class InMemoryHistoryManager implements HistoryManager {
         return linkIdNode;
     }
 
+    public String getHistoryOnlyId() {
+        String out;
+        StringBuilder outOnlyId = new StringBuilder();
+
+
+        for (Integer key : linkIdNode.keySet()) {
+            outOnlyId = outOnlyId.append(key).append(",");
+        }
+
+        out = outOnlyId.toString();
+        System.out.println("История только id " + out);
+        return out;
+
+    }
+
     @Override
     public ArrayList<Node> getHistory() {
         return history.getTasks();

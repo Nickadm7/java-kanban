@@ -38,6 +38,21 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
+    @Override
+    public Task getTaskById(Integer idTask) {
+        System.out.println("Ищем задачу под номером " + idTask);
+        if (tasks.get(idTask) != null) {
+            System.out.print("id = " + idTask + " ");
+            System.out.println(tasks.get(idTask));
+            historyManager.add(idTask, tasks.get(idTask));
+            save();
+            return tasks.get(idTask);
+        } else {
+            System.out.println("Такой задачи нет!");
+            return null;
+        }
+    }
+
     private void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             bufferedWriter.write("id,type,name,status,description,epic");
@@ -68,6 +83,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                 bufferedWriter.newLine();
             }
             bufferedWriter.newLine();
+            bufferedWriter.write(historyManager.getHistoryOnlyId());
         } catch (IOException e) {
             throw new ManagerSaveException();
         }

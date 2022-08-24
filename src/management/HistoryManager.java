@@ -9,5 +9,7 @@ public interface HistoryManager {
 
     ArrayList<InMemoryHistoryManager.Node> getHistory();
 
+    String getHistoryOnlyId();
+
     void add(Integer id, Task task);
 }
