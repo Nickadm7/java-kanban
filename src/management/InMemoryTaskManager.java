@@ -14,13 +14,25 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
-    private HistoryManager historyManager = Managers.getDefaultHistory();
+    public HistoryManager historyManager = Managers.getDefaultHistory();
 
     public InMemoryTaskManager() {
         id = 0;
         tasks = new HashMap<>();
         epics = new HashMap<>();
         subtasks = new HashMap<>();
+    }
+
+    public HashMap<Integer, Task> getTasks() {
+        return tasks;
+    }
+
+    public HashMap<Integer, Epic> getEpics() {
+        return epics;
+    }
+
+    public HashMap<Integer, Subtask> getSubtasks() {
+        return subtasks;
     }
 
     @Override

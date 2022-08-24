@@ -1,6 +1,7 @@
 package management;
 
 import elements.Task;
+import elements.TaskType;
 
 import java.util.*;
 
@@ -25,6 +26,10 @@ public class InMemoryHistoryManager implements HistoryManager {
 
     private CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
     private Map<Integer, Node> linkIdNode = new HashMap<>();
+
+    public Map<Integer, Node> getLinkIdNode() {
+        return linkIdNode;
+    }
 
     @Override
     public ArrayList<Node> getHistory() {
