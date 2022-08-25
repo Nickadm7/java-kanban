@@ -4,14 +4,15 @@ import elements.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import static elements.TaskType.*;
 
 public class InMemoryTaskManager implements TaskManager {
     private Integer id;
     public HashMap<Integer, Task> tasks; //храним все задачи
-    private HashMap<Integer, Epic> epics; //храним все epic
-    private HashMap<Integer, Subtask> subtasks; //храним все подзадачи
+    public HashMap<Integer, Epic> epics; //храним все epic
+    public HashMap<Integer, Subtask> subtasks; //храним все подзадачи
     private int counterSubtasks; // счетчик подзадач
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
@@ -171,6 +172,7 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
+
     @Override
     public void updateTaskById(Integer idTask, Task newTask) {
         System.out.println("Обновляем задачу под id= " + idTask + " новое значение: ");
@@ -301,7 +303,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     public String getCurrentHistoryOnlyId() {
-        return historyManager.getHistoryOnlyId();
+        return historyManager.getTasksHistoryId();
     }
 
 }

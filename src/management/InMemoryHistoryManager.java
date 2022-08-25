@@ -11,44 +11,44 @@ public class InMemoryHistoryManager implements HistoryManager {
         public T data;
         public Node next;
         public Node prev;
+        public Integer nodeId;
 
-        public Node(T data) {
+        public Node(T data, Integer nodeId) {
             this.data = data;
+            this.nodeId = nodeId;
         }
 
         @Override
         public String toString() {
-            return "Node{" +
-                    "data=" + data +
+            return "Node{" + '\'' +
+                    "data=" + data + '\'' +
                     '}';
         }
     }
 
-    private CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
+    public CustomLinkedList<Node> history = new CustomLinkedList(); // историю просмотров без повторов
     private Map<Integer, Node> linkIdNode = new HashMap<>();
+    public LinkedList<Integer> historyOutId = new LinkedList<>();
 
-    public Map<Integer, Node> getLinkIdNode() {
-        return linkIdNode;
-    }
-
-    public String getHistoryOnlyId() {
-        String out;
-        StringBuilder outOnlyId = new StringBuilder();
-
-
-        for (Integer key : linkIdNode.keySet()) {
-            outOnlyId = outOnlyId.append(key).append(",");
+    @Override
+    public String getTasksHistoryId() {
+        StringBuilder stringBuffer = new StringBuilder();
+        Iterator<Integer> it = history.getTasksHistoryId().iterator();
+        while (it.hasNext()) {
+            stringBuffer.append(it.next()).append(",");
         }
-
-        out = outOnlyId.toString();
+        if (stringBuffer.length() > 0) {
+            stringBuffer.setLength(stringBuffer.length() - 1);
+        }
+        String out = stringBuffer.toString();
         return out;
-
     }
 
     @Override
     public ArrayList<Node> getHistory() {
         return history.getTasks();
     }
+
 
     @Override
     public void add(Integer id, Task task) {
@@ -72,7 +72,7 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         public Node linkLast(Task task) {
             Node oldTail = tail;
-            Node newNode = new Node(task);
+            Node newNode = new Node(task, task.getId());
             tail = newNode;
             if (oldTail == null) {
                 head = newNode;
@@ -86,16 +86,32 @@ public class InMemoryHistoryManager implements HistoryManager {
 
         public ArrayList<Node> getTasks() {
             ArrayList<Node> historyOut = new ArrayList<>();
-            historyOut.add(head);
-            Node current = head.next;
-            while (current != null) {
-                historyOut.add(current);
-                current = current.next;
+            if (head != null) {
+                historyOut.add(head);
+                Node current = head.next;
+                while (current != null) {
+                    historyOut.add(current);
+                    current = current.next;
+                }
             }
             System.out.println();
             System.out.println("History Список перелинкованных Node" + historyOut);
             System.out.println("History Список Node хранятся в HashMap" + linkIdNode);
             return historyOut;
+        }
+
+
+        public LinkedList<Integer> getTasksHistoryId() {
+            LinkedList<Integer> out = new LinkedList<>();
+            if (head != null) {
+                out.add(head.nodeId);
+                Node current = head.next;
+                while (current != null) {
+                    out.add(current.nodeId);
+                    current = current.next;
+                }
+            }
+            return out;
         }
 
         public void removeNode(Node currentNode) {

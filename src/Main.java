@@ -34,26 +34,24 @@ public class Main {
         // Запрашиваем Task и проверяем порядок
         taskManager.getTaskById(1);
         taskManager.getTaskById(2);
-        taskManager.getTaskById(2);
-        taskManager.getTaskById(1);
-        taskManager.getCurrentHistory();
-        // Удаляем Task и проверяем порядок
-        //taskManager.deleteTaskById(1);
-        //taskManager.getCurrentHistory();
-        // Запрашиваем Epic и Subtask и проверяем порядок
         taskManager.getEpicById(3);
         taskManager.getEpicById(4);
         taskManager.getSubtaskById(5);
         taskManager.getSubtaskById(6);
         taskManager.getSubtaskById(7);
-        taskManager.getCurrentHistory();
+        taskManager.getSubtaskById(5);
+
+        taskManager.getTaskById(1);
+        //taskManager.getTaskById(1);
+        //taskManager.getEpicById(3);
+        //taskManager.getEpicById(4);
 
         // Удаляем Epic и проверяем удаление его Subtask
-        //taskManager.deleteEpicById(3);
+
         //taskManager.getCurrentHistory();
-        Task task4 = new Task("555 СтиркаNew", "Убрать вещи из шкафаNew", Status.DONE);
+        //taskManager.deleteEpicById(3);
+
         taskManager.getCurrentHistory();
-        taskManager.getTaskById(2);
 
     }
 }
