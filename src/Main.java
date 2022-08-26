@@ -2,15 +2,16 @@ import elements.Status;
 import elements.Epic;
 import elements.Subtask;
 import elements.Task;
-import management.Managers;
-import management.TaskManager;
+import management.*;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         // TaskManager taskManager = Managers.getDefault();
-        TaskManager taskManager = Managers.getFileBackedTasksManager();
+        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
+        /*
         Task task1 = new Task("1 Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("2 Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);
         //Task task3 = new Task("СтиркаNew", "Убрать вещи из шкафаNew", Status.DONE);
@@ -50,8 +51,12 @@ public class Main {
 
         //taskManager.getCurrentHistory();
         //taskManager.deleteEpicById(3);
+        System.out.println("Статичный метод historyToString " + HistoryManager.historyToString(InMemoryTaskManager.historyManager));
 
+         */
         taskManager.getCurrentHistory();
-
+        taskManager.getListOfAllTask();
+        taskManager.getListOfAllEpic();
+        taskManager.getListOfAllSubtask();
     }
 }

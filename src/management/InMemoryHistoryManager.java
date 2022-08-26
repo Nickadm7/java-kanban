@@ -1,7 +1,6 @@
 package management;
 
 import elements.Task;
-import elements.TaskType;
 
 import java.util.*;
 

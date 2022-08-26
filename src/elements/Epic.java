@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class Epic extends Task {
     private ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
 
+    public Epic(String name, String description, Status status) {
+        super(name, description, status);
+    }
+
     public Epic(String name, String description, Status status, ArrayList<Integer> listOfSubtasks) {
         super(name, description, status);
         this.listOfSubtasks = listOfSubtasks;

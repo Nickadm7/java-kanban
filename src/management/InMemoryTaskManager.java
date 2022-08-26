@@ -17,7 +17,7 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
-    public HistoryManager historyManager = Managers.getDefaultHistory();
+    public static HistoryManager historyManager = Managers.getDefaultHistory();
 
     public InMemoryTaskManager() {
         id = 0;

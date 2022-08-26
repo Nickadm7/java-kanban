@@ -3,7 +3,6 @@ package management;
 import elements.Task;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public interface HistoryManager {
     void remove(int id);
@@ -13,4 +12,9 @@ public interface HistoryManager {
     void add(Integer id, Task task);
 
     String getTasksHistoryId();
+
+    static String historyToString(HistoryManager manager){
+        String historyToStringOut = manager.getTasksHistoryId();
+        return historyToStringOut;
+    }
 }

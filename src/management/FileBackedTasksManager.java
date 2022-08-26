@@ -1,16 +1,12 @@
 package management;
 
-import elements.Epic;
-import elements.Subtask;
-import elements.Task;
-import elements.TaskType;
+import elements.*;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
+
+import static elements.TaskType.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
@@ -137,5 +133,68 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         }
     }
 
+    void loadAllFromFile(File file) {
+        String inputFileName = file.toString();
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.length() > 4) {
+                    if (line.split(",")[1].equals("TASK")) {
+                        fromString(line);
+                        System.out.println(fromString(line));
+                    }
+                    if (line.split(",")[1].equals("EPIC")) {
+                        fromString(line);
+                        System.out.println(fromString(line));
+                    }
+                    if (line.split(",")[1].equals("SUBTASK")) {
+                        fromString(line);
+                        System.out.println(fromString(line));
+                    }
+                }
 
+                System.out.println(line + "\n");
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Task fromString(String value) {
+        Integer bufferId = Integer.parseInt (value.split(",")[0]);
+        String bufferName = (value.split(",")[2]);
+        String bufferDescription = (value.split(",")[4]);
+        Status bufferStatus = Status.NEW;
+        if (value.split(",")[3].equals("NEW")) {
+            bufferStatus = Status.NEW;
+        } else if (value.split(",")[3].equals("IN_PROGRESS")) {
+            bufferStatus = Status.IN_PROGRESS;
+        } else if (value.split(",")[3].equals("DONE")) {
+            bufferStatus = Status.DONE;
+        }
+        if (value.split(",")[1].equals("TASK")) {
+            Task bufferTask = new Task(bufferName,bufferDescription, bufferStatus);
+            bufferTask.setId(bufferId);
+            bufferTask.setTaskType(TASK);
+            tasks.put(bufferId, bufferTask);
+            return bufferTask;
+        }
+        if (value.split(",")[1].equals("EPIC")) {
+            Epic bufferEpic = new Epic(bufferName,bufferDescription, bufferStatus);
+            bufferEpic.setId(bufferId);
+            bufferEpic.setTaskType(EPIC);
+            epics.put(bufferId, bufferEpic);
+            return bufferEpic;
+        }
+        if (value.split(",")[1].equals("SUBTASK")) {
+            Integer bufferLinkEpic = Integer.parseInt (value.split(",")[5]);
+            Subtask bufferSubtask = new Subtask(bufferName,bufferDescription, bufferStatus, bufferLinkEpic);
+            bufferSubtask.setId(bufferId);
+            bufferSubtask.setTaskType(SUBTASK);
+            subtasks.put(bufferId, bufferSubtask);
+            return bufferSubtask;
+        }
+        return null;
+    }
 }

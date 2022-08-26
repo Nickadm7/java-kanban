@@ -14,4 +14,10 @@ public class Managers {
     public static FileBackedTasksManager getFileBackedTasksManager() {
         return new FileBackedTasksManager(new File("src/resources/tasks.csv"));
     }
+
+    public static FileBackedTasksManager loadFromFile(File file) {
+        FileBackedTasksManager fileBackedTasksManager = new FileBackedTasksManager(file);
+        fileBackedTasksManager.loadAllFromFile(file);
+        return fileBackedTasksManager;
+    }
 }
