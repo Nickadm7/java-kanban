@@ -1,16 +1,11 @@
-import elements.Status;
-import elements.Epic;
-import elements.Subtask;
-import elements.Task;
 import management.*;
 
 import java.io.File;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         // TaskManager taskManager = Managers.getDefault();
-        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
+        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/tasks.csv"));
         /*
         Task task1 = new Task("1 Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("2 Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);
@@ -31,7 +26,6 @@ public class Main {
         taskManager.writeNewSubtask(subtask1);
         taskManager.writeNewSubtask(subtask2);
         taskManager.writeNewSubtask(subtask3);
-
         // Запрашиваем Task и проверяем порядок
         taskManager.getTaskById(1);
         taskManager.getTaskById(2);
@@ -41,22 +35,20 @@ public class Main {
         taskManager.getSubtaskById(6);
         taskManager.getSubtaskById(7);
         taskManager.getSubtaskById(5);
-
         taskManager.getTaskById(1);
         //taskManager.getTaskById(1);
         //taskManager.getEpicById(3);
         //taskManager.getEpicById(4);
-
         // Удаляем Epic и проверяем удаление его Subtask
-
         //taskManager.getCurrentHistory();
         //taskManager.deleteEpicById(3);
         System.out.println("Статичный метод historyToString " + HistoryManager.historyToString(InMemoryTaskManager.historyManager));
-
          */
-        taskManager.getCurrentHistory();
         taskManager.getListOfAllTask();
         taskManager.getListOfAllEpic();
         taskManager.getListOfAllSubtask();
+        taskManager.getCurrentHistory();
+        taskManager.deleteTaskById(2);
+        taskManager.getCurrentHistory();
     }
 }

@@ -7,7 +7,6 @@ import elements.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 
 public interface TaskManager {
     void writeNewTask(Task newTask);

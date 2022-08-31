@@ -1,7 +1,5 @@
 package elements;
 
-import java.util.ArrayList;
-
 public class Task {
     private Integer id; //уникальный id
     private String name; //название
