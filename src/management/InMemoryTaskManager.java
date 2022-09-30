@@ -43,6 +43,7 @@ public class InMemoryTaskManager implements TaskManager {
         newTask.setId(bufferId);
         newTask.setTaskType(TASK);
         tasks.put(bufferId, newTask);
+        historyManager.add(bufferId, tasks.get(bufferId));
     }
 
     @Override
@@ -51,6 +52,7 @@ public class InMemoryTaskManager implements TaskManager {
         newEpic.setId(bufferId);
         newEpic.setTaskType(EPIC);
         epics.put(bufferId, newEpic);
+        historyManager.add(bufferId, epics.get(bufferId));
         determineAndSetCorrectEpicStatus();
     }
 
@@ -61,17 +63,15 @@ public class InMemoryTaskManager implements TaskManager {
         newSubtask.setTaskType(SUBTASK);
         subtasks.put(bufferId, newSubtask);
         epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
+        historyManager.add(bufferId, subtasks.get(bufferId));
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public HashMap<Integer, Task> getListOfAllTask() {
         if (tasks.isEmpty()) {
-            System.out.println("Таблица elements.Task пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все elements.Task:");
-            System.out.println(tasks.values());
             return tasks;
         }
     }
@@ -79,11 +79,8 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public HashMap<Integer, Epic> getListOfAllEpic() {
         if (epics.isEmpty()) {
-            System.out.println("Таблица elements.Epic пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все elements.Epic:");
-            System.out.println(epics.values());
             return epics;
         }
     }
@@ -91,11 +88,8 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public HashMap<Integer, Subtask> getListOfAllSubtask() {
         if (subtasks.isEmpty()) {
-            System.out.println("Таблица elements.Subtask пуста!");
             return null;
         } else {
-            System.out.println("Печатаю все elements.Subtask:");
-            System.out.println(subtasks.values());
             return subtasks;
         }
     }
@@ -106,7 +100,6 @@ public class InMemoryTaskManager implements TaskManager {
             historyManager.remove(key);
         }
         tasks.clear();
-        System.out.println("Все задачи успешно удалены!");
     }
 
     @Override
@@ -116,7 +109,6 @@ public class InMemoryTaskManager implements TaskManager {
             historyManager.remove(key);
         }
         epics.clear();
-        System.out.println("Все эпики успешно удалены!");
     }
 
     @Override
@@ -125,48 +117,35 @@ public class InMemoryTaskManager implements TaskManager {
             historyManager.remove(key);
         }
         subtasks.clear();
-        System.out.println("Все подзадачи успешно удалены!");
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public Task getTaskById(Integer idTask) {
-        System.out.println("Ищем задачу под номером " + idTask);
         if (tasks.get(idTask) != null) {
-            System.out.print("id = " + idTask + " ");
-            System.out.println(tasks.get(idTask));
             historyManager.add(idTask, tasks.get(idTask));
             return tasks.get(idTask);
         } else {
-            System.out.println("Такой задачи нет!");
             return null;
         }
     }
 
     @Override
     public Epic getEpicById(Integer idEpic) {
-        System.out.println("Ищем эпик под номером " + idEpic);
         if (epics.get(idEpic) != null) {
-            System.out.print("id = " + idEpic + " ");
-            System.out.println(epics.get(idEpic));
             historyManager.add(idEpic, epics.get(idEpic));
             return epics.get(idEpic);
         } else {
-            System.out.println("Такого эпика нет!");
             return null;
         }
     }
 
     @Override
     public Subtask getSubtaskById(Integer idSubtask) {
-        System.out.println("Ищем подзадачу под номером " + idSubtask);
         if (subtasks.get(idSubtask) != null) {
-            System.out.print("id = " + idSubtask + " ");
-            System.out.println(subtasks.get(idSubtask));
             historyManager.add(idSubtask, subtasks.get(idSubtask));
             return subtasks.get(idSubtask);
         } else {
-            System.out.println("Такой подзадачи нет!");
             return null;
         }
     }
@@ -174,51 +153,36 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void updateTaskById(Integer idTask, Task newTask) {
-        System.out.println("Обновляем задачу под id= " + idTask + " новое значение: ");
         if (tasks.get(idTask) != null) {
             tasks.put(idTask, newTask);
-            System.out.print("id = " + idTask + " ");
-            System.out.println(tasks.get(idTask));
-        } else {
-            System.out.println("Такой задачи нет!");
+            newTask.setId(idTask);
         }
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public void updateEpicById(Integer idEpic, Epic newEpic) {
-        System.out.println("Обновляем эпик под id= " + idEpic + " новое значение: ");
         if (epics.get(idEpic) != null) {
             epics.put(idEpic, newEpic);
-            System.out.print("id = " + idEpic + " ");
-            System.out.println(epics.get(idEpic));
-        } else {
-            System.out.println("Такого эпика нет!");
+            newEpic.setId(idEpic);
         }
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public void updateSubtaskById(Integer idSubtask, Subtask newSubtask) {
-        System.out.println("Обновляем подзадачу под id= " + idSubtask + " новое значение: ");
         if (subtasks.get(idSubtask) != null) {
             subtasks.put(idSubtask, newSubtask);
-            System.out.print("id = " + idSubtask + " ");
-            System.out.println(subtasks.get(idSubtask));
-        } else {
-            System.out.println("Такой подзадачи нет!");
+            newSubtask.setId(idSubtask);
         }
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
     public void deleteTaskById(Integer idTask) {
-        System.out.println("Удаляем задачу под id= " + idTask);
         if (tasks.get(idTask) != null) {
             historyManager.remove(idTask);
             tasks.remove(idTask);
-        } else {
-            System.out.println("Такой задачи нет!");
         }
     }
 
@@ -229,35 +193,28 @@ public class InMemoryTaskManager implements TaskManager {
             historyManager.remove(deleteSubtasksId);
             subtasks.remove(deleteSubtasksId);
         }
-        System.out.println("Удаляем эпик под id= " + idEpic);
         if (epics.get(idEpic) != null) {
             historyManager.remove(idEpic);
             epics.remove(idEpic);
-        } else {
-            System.out.println("Такого эпика нет!");
         }
     }
 
     @Override
     public void deleteSubtaskById(Integer idSubtask) {
-        System.out.println("Удаляем подзадачи под id= " + idSubtask);
         if (subtasks.get(idSubtask) != null) {
             epics.get(subtasks.get(idSubtask).getLinkEpic()).getListOfSubtasks().remove(idSubtask); // удаляем из эпика id нашей подзадачи
             historyManager.remove(idSubtask);
             subtasks.remove(idSubtask);
-        } else {
-            System.out.println("Такой подзадачи нет!");
         }
         determineAndSetCorrectEpicStatus();
     }
 
     @Override
-    public void getSubtaskForEpicById(Integer idEpic) {
-        System.out.println("Получаем список всех подзадач эпика по id= " + idEpic);
+    public ArrayList<Integer> getSubtaskForEpicById(Integer idEpic) {
         if (epics.get(idEpic) != null) {
-            System.out.println("Для эпика с id " + idEpic + " подзадачи " + epics.get(idEpic).getListOfSubtasks());
+            return epics.get(idEpic).getListOfSubtasks();
         } else {
-            System.out.println("Такого эпика нет!");
+            return null;
         }
     }
 

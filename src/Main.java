@@ -1,11 +1,16 @@
+import elements.Status;
+import elements.Task;
 import management.*;
 
 import java.io.File;
 
 public class Main {
     public static void main(String[] args) {
-        // TaskManager taskManager = Managers.getDefault();
-        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/tasks.csv"));
+        TaskManager taskManager = Managers.getDefault();
+        Task task1 = new Task("1 Уборка", "Вымыть посуду на кухне", Status.NEW);
+        taskManager.writeNewTask(task1);
+        taskManager.getCurrentHistory();
+        //TaskManager taskManager = Managers.loadFromFile(new File("src/resources/tasks.csv"));
         /*
         Task task1 = new Task("1 Уборка", "Вымыть посуду на кухне", Status.NEW);
         Task task2 = new Task("2 Стирка", "Убрать вещи из шкафа", Status.IN_PROGRESS);

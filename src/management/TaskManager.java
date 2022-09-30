@@ -45,7 +45,7 @@ public interface TaskManager {
 
     void deleteSubtaskById(Integer idSubtask);
 
-    void getSubtaskForEpicById(Integer idEpic);
+    ArrayList<Integer> getSubtaskForEpicById(Integer idEpic);
 
     int generateNewId();
 

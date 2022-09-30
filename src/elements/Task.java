@@ -18,7 +18,12 @@ public class Task {
     }
 
     public Integer getId() {
-        return id;
+        if (id != null) {
+            return id;
+        } else {
+            System.out.println("Такого id нет");
+            return null;
+        }
     }
 
     public void setTaskType(TaskType taskType) {
