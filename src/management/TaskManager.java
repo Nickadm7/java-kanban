@@ -50,6 +50,8 @@ public interface TaskManager {
 
     Set<Task> getPrioritizedTasks();
 
+    boolean validateTime(String startTime, Integer duration);
+
     int generateNewId();
 
     ArrayList<InMemoryHistoryManager.Node> getCurrentHistory();

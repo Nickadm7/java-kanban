@@ -10,9 +10,8 @@ public class Task {
     private String description; //описание
     private Status status; //статус NEW, IN_PROGRESS, DONE
     private TaskType taskType; //тип задачи TASK, EPIC, SUBTASK
-    private Integer duration; //продолжительность выполнения задачи
     private String startTime; //дата и время начала выполнения задачи
-
+    private Integer duration; //продолжительность выполнения задачи
     private String endTime; //дата и время конца выполнения задачи
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
 

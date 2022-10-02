@@ -24,14 +24,14 @@ public class Main {
                 "Вымыть посуду на кухне",
                 Status.IN_PROGRESS,
                 60,
-                "01.10.2021, 14:03",
+                "01.10.2022, 14:03",
                 1);
         Subtask subtask2 = new Subtask(
                 "Задача № 2",
                 "Вымыть посуду на кухне",
                 Status.IN_PROGRESS,
                 30,
-                "01.10.2022, 14:03",
+                "01.10.2020, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask1);
         taskManager.writeNewSubtask(subtask2);
@@ -42,7 +42,14 @@ public class Main {
                 Status.NEW,
                 90,
                 "05.05.2022, 14:03");
+        Task task2 = new Task(
+                "Test name",
+                "Test description",
+                Status.NEW,
+                90,
+                "05.05.2022, 14:05");
         taskManager.writeNewTask(task1);
+        taskManager.writeNewTask(task2);
         taskManager.getListOfAllTask();
         taskManager.getListOfAllEpic();
         taskManager.getPrioritizedTasks();

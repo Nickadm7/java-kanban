@@ -45,8 +45,12 @@ public class InMemoryTaskManager implements TaskManager {
         Integer bufferId = generateNewId();
         newTask.setId(bufferId);
         newTask.setTaskType(TASK);
-        tasks.put(bufferId, newTask);
-        historyManager.add(bufferId, tasks.get(bufferId));
+        if (validateTime(newTask.getStartTime(), newTask.getDuration())) {
+            tasks.put(bufferId, newTask);
+            historyManager.add(bufferId, tasks.get(bufferId));
+        } else {
+            System.out.println("Данное время уже занято другой задачей!");
+        }
     }
 
     @Override
@@ -64,10 +68,14 @@ public class InMemoryTaskManager implements TaskManager {
         Integer bufferId = generateNewId();
         newSubtask.setId(bufferId);
         newSubtask.setTaskType(SUBTASK);
-        subtasks.put(bufferId, newSubtask);
-        epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
-        historyManager.add(bufferId, subtasks.get(bufferId));
-        determineAndSetCorrectEpicStatus();
+        if (validateTime(newSubtask.getStartTime(), newSubtask.getDuration())) {
+            subtasks.put(bufferId, newSubtask);
+            epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
+            historyManager.add(bufferId, subtasks.get(bufferId));
+            determineAndSetCorrectEpicStatus();
+        } else {
+            System.out.println("Данное время уже занято другой задачей!");
+        }
     }
 
     @Override
@@ -79,7 +87,6 @@ public class InMemoryTaskManager implements TaskManager {
             return tasks;
         }
     }
-
 
     @Override
     public HashMap<Integer, Epic> getListOfAllEpic() {
@@ -161,10 +168,14 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void updateTaskById(Integer idTask, Task newTask) {
         if (tasks.get(idTask) != null) {
-            tasks.put(idTask, newTask);
-            newTask.setId(idTask);
+            if (validateTime(newTask.getStartTime(), newTask.getDuration())) {
+                tasks.put(idTask, newTask);
+                newTask.setId(idTask);
+                determineAndSetCorrectEpicStatus();
+            } else {
+                System.out.println("Данное время уже занято другой задачей!");
+            }
         }
-        determineAndSetCorrectEpicStatus();
     }
 
     @Override
@@ -179,10 +190,14 @@ public class InMemoryTaskManager implements TaskManager {
     @Override
     public void updateSubtaskById(Integer idSubtask, Subtask newSubtask) {
         if (subtasks.get(idSubtask) != null) {
-            subtasks.put(idSubtask, newSubtask);
-            newSubtask.setId(idSubtask);
+            if (validateTime(newSubtask.getStartTime(), newSubtask.getDuration())) {
+                subtasks.put(idSubtask, newSubtask);
+                newSubtask.setId(idSubtask);
+                determineAndSetCorrectEpicStatus();
+            } else {
+                System.out.println("Данное время уже занято другой задачей!");
+            }
         }
-        determineAndSetCorrectEpicStatus();
     }
 
     @Override
@@ -236,6 +251,19 @@ public class InMemoryTaskManager implements TaskManager {
         return tasksByPriority;
     }
 
+    public boolean validateTime(String startTime, Integer duration) {
+        LocalDateTime currentDataTime = LocalDateTime.parse(startTime, formatter);
+        for (Task task : getPrioritizedTasks()) {
+            LocalDateTime bufferStartTime = LocalDateTime.parse(task.getStartTime(), formatter);
+            LocalDateTime bufferEndTime = LocalDateTime.parse(task.getEndTime(), formatter);
+            if (currentDataTime.isAfter(bufferStartTime) && currentDataTime.isBefore(bufferEndTime)) {
+                return false;
+            }
+            System.out.println(task);
+        }
+        return true;
+    }
+
     public void determineAndSetCorrectEpicStatus() {
         for (Integer key : epics.keySet()) {
             counterSubtasks = 0; // счетчик подзадач
@@ -273,13 +301,16 @@ public class InMemoryTaskManager implements TaskManager {
                 if (subtasks.get(currentSubtask) != null) {
                     currentEpic = currentEpic + subtasks.get(currentSubtask).getDuration();
                 }
-                LocalDateTime bufferStartTime = LocalDateTime.parse(subtasks.get(currentSubtask).getStartTime(), formatter);
-                LocalDateTime bufferEndTime = LocalDateTime.parse(subtasks.get(currentSubtask).getEndTime(), formatter);
-                if (bufferStartTime.isBefore(currentStartTime)) {
-                    currentStartTime = bufferStartTime;
-                }
-                if (currentEndTime.isBefore(bufferEndTime)) {
-                    currentEndTime = bufferEndTime;
+                if (subtasks.get(currentSubtask) != null) {
+                    LocalDateTime bufferStartTime = LocalDateTime.parse(subtasks.get(currentSubtask).getStartTime(), formatter);
+                    LocalDateTime bufferEndTime = LocalDateTime.parse(subtasks.get(currentSubtask).getEndTime(), formatter);
+
+                    if (bufferStartTime.isBefore(currentStartTime)) {
+                        currentStartTime = bufferStartTime;
+                    }
+                    if (currentEndTime.isBefore(bufferEndTime)) {
+                        currentEndTime = bufferEndTime;
+                    }
                 }
             }
             String formatStartTime = currentStartTime.format(formatter);
