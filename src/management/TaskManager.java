@@ -7,6 +7,7 @@ import elements.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Set;
 
 public interface TaskManager {
     void writeNewTask(Task newTask);
@@ -46,6 +47,8 @@ public interface TaskManager {
     void deleteSubtaskById(Integer idSubtask);
 
     ArrayList<Integer> getSubtaskForEpicById(Integer idEpic);
+
+    Set<Task> getPrioritizedTasks();
 
     int generateNewId();
 

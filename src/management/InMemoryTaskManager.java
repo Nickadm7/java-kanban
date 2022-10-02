@@ -2,8 +2,10 @@ package management;
 
 import elements.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import static elements.TaskType.*;
 
@@ -17,6 +19,7 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
     public static HistoryManager historyManager = Managers.getDefaultHistory();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
 
     public InMemoryTaskManager() {
         id = 0;
@@ -72,15 +75,18 @@ public class InMemoryTaskManager implements TaskManager {
         if (tasks.isEmpty()) {
             return null;
         } else {
+            System.out.println(tasks);
             return tasks;
         }
     }
+
 
     @Override
     public HashMap<Integer, Epic> getListOfAllEpic() {
         if (epics.isEmpty()) {
             return null;
         } else {
+            System.out.println(epics);
             return epics;
         }
     }
@@ -90,6 +96,7 @@ public class InMemoryTaskManager implements TaskManager {
         if (subtasks.isEmpty()) {
             return null;
         } else {
+            System.out.println(subtasks);
             return subtasks;
         }
     }
@@ -218,6 +225,17 @@ public class InMemoryTaskManager implements TaskManager {
         }
     }
 
+    public Set<Task> getPrioritizedTasks() {
+        Set<Task> tasksByPriority = new TreeSet<>
+                (Comparator.comparing(Task::getStartTime,
+                        Comparator.nullsLast(Comparator.naturalOrder())));
+        tasksByPriority.addAll(tasks.values());
+        tasksByPriority.addAll(subtasks.values());
+        System.out.println();
+        System.out.println(tasksByPriority);
+        return tasksByPriority;
+    }
+
     public void determineAndSetCorrectEpicStatus() {
         for (Integer key : epics.keySet()) {
             counterSubtasks = 0; // счетчик подзадач
@@ -245,6 +263,30 @@ public class InMemoryTaskManager implements TaskManager {
             if (counterSubtasks != 0 && counterSubtasks == counterSubtasksStatusDone) {
                 epics.get(key).setStatus(Status.DONE);
             }
+        }
+
+        for (Integer key : epics.keySet()) {
+            Integer currentEpic = 0;
+            LocalDateTime currentStartTime = LocalDateTime.of(9999, 1, 1, 0, 0);
+            LocalDateTime currentEndTime = LocalDateTime.of(0001, 1, 1, 0, 0);
+            for (Integer currentSubtask : epics.get(key).getListOfSubtasks()) {
+                if (subtasks.get(currentSubtask) != null) {
+                    currentEpic = currentEpic + subtasks.get(currentSubtask).getDuration();
+                }
+                LocalDateTime bufferStartTime = LocalDateTime.parse(subtasks.get(currentSubtask).getStartTime(), formatter);
+                LocalDateTime bufferEndTime = LocalDateTime.parse(subtasks.get(currentSubtask).getEndTime(), formatter);
+                if (bufferStartTime.isBefore(currentStartTime)) {
+                    currentStartTime = bufferStartTime;
+                }
+                if (currentEndTime.isBefore(bufferEndTime)) {
+                    currentEndTime = bufferEndTime;
+                }
+            }
+            String formatStartTime = currentStartTime.format(formatter);
+            String formatEndTime = currentEndTime.format(formatter);
+            epics.get(key).setDuration(currentEpic); // устанавливаем правильную продолжительность Эпика
+            epics.get(key).setStartTime(formatStartTime); // устанавливаем правильное время начала Эпика
+            epics.get(key).setEndTime(formatEndTime); // устанавливаем правильное время конца Эпика
         }
     }
 
