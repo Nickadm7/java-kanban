@@ -7,8 +7,8 @@ public class Epic extends Task {
     private String endTime; //дата и время конца выполнения задачи
     private ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
 
-    public Epic(String name, String description, Status status) {
-        super(name, description, status);
+    public Epic(String name, String description, Status status, String startTime, Integer duration) {
+        super(name, description, status, startTime, duration);
     }
 
     public Epic(String name, String description, Status status, ArrayList<Integer> listOfSubtasks) {
@@ -16,8 +16,8 @@ public class Epic extends Task {
         this.listOfSubtasks = listOfSubtasks;
     }
 
-    public Epic(String name, String description, Status status, Integer duration, String startTime, ArrayList<Integer> listOfSubtasks) {
-        super(name, description, status, duration, startTime);
+    public Epic(String name, String description, Status status, String startTime, Integer duration, ArrayList<Integer> listOfSubtasks) {
+        super(name, description, status, startTime, duration);
         this.listOfSubtasks = listOfSubtasks;
     }
 

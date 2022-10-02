@@ -19,7 +19,7 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
     private int currentId; //текущий номер id
     public static HistoryManager historyManager = Managers.getDefaultHistory();
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public InMemoryTaskManager() {
         id = 0;

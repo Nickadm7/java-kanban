@@ -13,7 +13,7 @@ public class Task {
     private String startTime; //дата и время начала выполнения задачи
     private Integer duration; //продолжительность выполнения задачи
     private String endTime; //дата и время конца выполнения задачи
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public Integer getDuration() {
         return duration;
@@ -41,7 +41,7 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String name, String description, Status status, Integer duration, String startTime) {
+    public Task(String name, String description, Status status, String startTime, Integer duration) {
         this.name = name;
         this.description = description;
         this.status = status;
@@ -106,8 +106,8 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", status=" + status +
                 ", taskType=" + taskType +
-                ", duration(min)=" + duration +
                 ", startTime='" + startTime + '\'' +
+                ", duration(min)=" + duration +
                 ", endTime='" + (LocalDateTime.parse(endTime, formatter)).format(formatter) + '\'' +
                 '}';
     }

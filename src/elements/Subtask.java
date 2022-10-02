@@ -5,17 +5,17 @@ import java.time.format.DateTimeFormatter;
 
 public class Subtask extends Task {
     private Integer linkEpic; //номер связанного эпика для подзадачи
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.dd.MMТHH:mm");
 
     public Subtask(String name, String description, Status status, Integer linkEpic) {
         super(name, description, status);
         this.linkEpic = linkEpic;
     }
 
-    public Subtask(String name, String description, Status status, Integer duration, String startTime, Integer linkEpic) {
-        super(name, description, status, duration, startTime);
+    public Subtask(String name, String description, Status status, String startTime, Integer duration, Integer linkEpic) {
+        super(name, description, status, startTime, duration);
         this.linkEpic = linkEpic;
     }
+
 
     public Integer getLinkEpic() {
         return linkEpic;

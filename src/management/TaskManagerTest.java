@@ -24,22 +24,22 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask1 = new Subtask(
                 "Задача № 1",
                 "Вымыть посуду на кухне",
                 Status.IN_PROGRESS,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         Subtask subtask2 = new Subtask("Задача № 2",
                 "Вымыть посуду на кухне",
                 Status.IN_PROGRESS,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask1);
         taskManager.writeNewSubtask(subtask2);
@@ -53,23 +53,23 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask1 = new Subtask(
                 "Задача № 1",
                 "Вымыть посуду на кухне",
                 Status.NEW,
+                "01.10.2021 14:03",
                 15,
-                "01.10.2021, 14:03",
                 1);
         Subtask subtask2 = new Subtask(
                 "Задача № 2",
                 "Вымыть посуду на кухне",
                 Status.NEW,
+                "01.10.2021 14:03",
                 15,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask1);
         taskManager.writeNewSubtask(subtask2);
@@ -83,8 +83,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task);
         assertNotNull(task, "Задача не найдена.");
         assertEquals(task.getId(), 1, "id не совпадают.");
@@ -99,8 +99,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
         Epic epic = new Epic("Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         assertNotNull(epic, "Эпик не найдена.");
@@ -117,16 +117,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         assertNotNull(subtask, "Подзадача не найдена.");
@@ -144,9 +144,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03"
-                );
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task1);
         tasksNew.put(1, task1);
         assertEquals(taskManager.getListOfAllTask(), tasksNew, "Список из одного Таска не выводиться.");
@@ -154,8 +153,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task2);
         tasksNew.put(2, task2);
         assertEquals(taskManager.getListOfAllTask(), tasksNew, "Список из двух Тасков не выводиться.");
@@ -170,16 +169,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask1 = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask1);
         subtaskNew.put(2, subtask1);
@@ -188,8 +187,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask2);
         subtaskNew.put(3, subtask2);
@@ -218,8 +217,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task1);
         assertEquals(taskManager.getTaskById(1), task1, "список не совпадают.");
     }
@@ -232,16 +231,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         assertEquals(taskManager.getSubtaskById(2), subtask, "список не совпадают.");
@@ -262,15 +261,15 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task);
         Task newTask = new Task(
                 "NEW Test name",
                 "NEW Test description",
                 Status.IN_PROGRESS,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.updateTaskById(1, newTask);
         assertEquals(taskManager.getTaskById(1).getName(), "NEW Test name", "name не совпадают.");
         assertEquals(taskManager.getTaskById(1).getDescription(), "NEW Test description", "description не совпадают.");
@@ -284,24 +283,24 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         Subtask newSubtask = new Subtask(
                 "NEW Test name",
                 "NEW Test description",
                 Status.IN_PROGRESS,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 1);
         taskManager.updateSubtaskById(2, newSubtask);
         assertEquals(taskManager.getSubtaskById(2).getName(), "NEW Test name", "name не совпадают.");
@@ -328,16 +327,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.10.2021, 14:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic1);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         epicSubtasks.add(2);
@@ -350,8 +349,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.10.2021, 14:03");
+                "01.10.2021 14:03",
+                45);
         taskManager.writeNewTask(task);
         taskManager.deleteTaskById(1);
         assertEquals(taskManager.getTaskById(1), null, "Получаем не существующий Таск.");
@@ -364,16 +363,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         taskManager.deleteSubtaskById(2);
@@ -395,14 +394,14 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.11.2022, 15:03");
+                "01.11.2022 15:03",
+                45);
         Task task1 = new Task(
                 "Test name",
                 "Test description",
                 Status.NEW,
-                45,
-                "01.12.2022, 15:03");
+                "01.12.2022 15:03",
+                45);
         taskManager.writeNewTask(task);
         taskManager.writeNewTask(task1);
         taskManager.deleteAllTasks();
@@ -417,16 +416,16 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name Epic",
                 "Test description Epic",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         Subtask subtask = new Subtask(
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 1);
         taskManager.writeNewSubtask(subtask);
         taskManager.deleteAllSubtask();
@@ -440,8 +439,8 @@ abstract class TaskManagerTest<T extends TaskManager> {
                 "Test name",
                 "Test description",
                 Status.NEW,
+                "01.10.2021 14:03",
                 45,
-                "01.11.2022, 15:03",
                 epicSubtasks);
         taskManager.writeNewEpic(epic);
         taskManager.deleteAllEpics();

@@ -3,12 +3,14 @@ package management;
 import elements.*;
 
 import java.io.*;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 
 import static elements.TaskType.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
     private final File file;
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public FileBackedTasksManager(File file) {
         this.file = file;
@@ -16,12 +18,10 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     public static void main(String[] args) {
         TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
-        taskManager.getListOfAllTask();
-        taskManager.getListOfAllEpic();
-        taskManager.getListOfAllSubtask();
-        taskManager.getCurrentHistory();
-        taskManager.deleteTaskById(2);
-        taskManager.getCurrentHistory();
+        //TaskManager taskManager = Managers.getDefault();
+       //taskManager.getListOfAllTask();
+       taskManager.getListOfAllSubtask();
+       //taskManager.getListOfAllEpic();
     }
 
     @Override
@@ -107,18 +107,38 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     private void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
-            bufferedWriter.write("id,type,name,status,description,epic");
+            bufferedWriter.write("id,type,name,status,description,startTime,duration,epic");
             bufferedWriter.newLine();
             for (Task value : getTasks().values()) {
-                bufferedWriter.write(value.getId() + "," + value.getTaskType() + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + ",");
+                bufferedWriter.write(value.getId() + "," +
+                        value.getTaskType() + "," +
+                        value.getName() + "," +
+                        value.getStatus() + "," +
+                        value.getDescription() + "," +
+                        value.getStartTime() + "," +
+                        value.getDuration());
                 bufferedWriter.newLine();
             }
             for (Epic value : getEpics().values()) {
-                bufferedWriter.write(value.getId() + "," + value.getTaskType() + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + ",");
+                bufferedWriter.write(value.getId() + "," +
+                        value.getTaskType() + "," +
+                        value.getName() + "," +
+                        value.getStatus() + "," +
+                        value.getDescription() + "," +
+                        value.getStartTime() + "," +
+                        value.getDuration());
+
                 bufferedWriter.newLine();
             }
             for (Subtask value : getSubtasks().values()) {
-                bufferedWriter.write(value.getId() + "," + value.getTaskType() + "," + value.getName() + "," + value.getStatus() + "," + value.getDescription() + "," + ((Subtask) value).getLinkEpic());
+                bufferedWriter.write(value.getId() + "," +
+                        value.getTaskType() + "," +
+                        value.getName() + "," +
+                        value.getStatus() + "," +
+                        value.getDescription() + "," +
+                        value.getStartTime() + "," +
+                        value.getDuration() + "," +
+                        ((Subtask) value).getLinkEpic());
                 bufferedWriter.newLine();
             }
             bufferedWriter.write(" ");
@@ -180,23 +200,25 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         } else if (value.split(",")[3].equals("DONE")) {
             bufferStatus = Status.DONE;
         }
+        String bufferStartTime = (value.split(",")[5]);
+        Integer bufferDuration = Integer.parseInt(value.split(",")[6]);
         if (value.split(",")[1].equals("TASK")) {
-            Task bufferTask = new Task(bufferName, bufferDescription, bufferStatus);
+            Task bufferTask = new Task(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration);
             bufferTask.setId(bufferId);
             bufferTask.setTaskType(TASK);
             tasks.put(bufferId, bufferTask);
             return bufferTask;
         }
         if (value.split(",")[1].equals("EPIC")) {
-            Epic bufferEpic = new Epic(bufferName, bufferDescription, bufferStatus);
+            Epic bufferEpic = new Epic(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration);
             bufferEpic.setId(bufferId);
             bufferEpic.setTaskType(EPIC);
             epics.put(bufferId, bufferEpic);
             return bufferEpic;
         }
         if (value.split(",")[1].equals("SUBTASK")) {
-            Integer bufferLinkEpic = Integer.parseInt(value.split(",")[5]);
-            Subtask bufferSubtask = new Subtask(bufferName, bufferDescription, bufferStatus, bufferLinkEpic);
+            Integer bufferLinkEpic = Integer.parseInt(value.split(",")[7]);
+            Subtask bufferSubtask = new Subtask(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration, bufferLinkEpic);
             bufferSubtask.setId(bufferId);
             bufferSubtask.setTaskType(SUBTASK);
             subtasks.put(bufferId, bufferSubtask);
