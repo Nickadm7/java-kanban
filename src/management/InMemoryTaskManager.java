@@ -2,7 +2,6 @@ package management;
 
 import elements.*;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -17,7 +16,6 @@ public class InMemoryTaskManager implements TaskManager {
     private int counterSubtasks; // счетчик подзадач
     private int counterSubtasksStatusNew; // счетчик подзадач со статусом NEW
     private int counterSubtasksStatusDone; // счетчик подзадач со статусом DONE
-    private int currentId; //текущий номер id
     public static HistoryManager historyManager = Managers.getDefaultHistory();
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 

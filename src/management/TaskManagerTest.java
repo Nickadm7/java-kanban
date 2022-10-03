@@ -4,7 +4,6 @@ import elements.Epic;
 import elements.Status;
 import elements.Subtask;
 import elements.Task;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -14,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 abstract class TaskManagerTest<T extends TaskManager> {
-
     TaskManager taskManager = new InMemoryTaskManager();
 
     @Test

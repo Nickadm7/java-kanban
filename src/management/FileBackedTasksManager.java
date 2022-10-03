@@ -4,7 +4,6 @@ import elements.*;
 
 import java.io.*;
 import java.time.format.DateTimeFormatter;
-import java.util.LinkedList;
 
 import static elements.TaskType.*;
 
@@ -159,7 +158,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     }
 
     void loadAllFromFile(File file) {
-        LinkedList<Integer> historyId = new LinkedList<>();
         String inputFileName = file.toString();
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName))) {
             String line;
