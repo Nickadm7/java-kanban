@@ -1,8 +1,5 @@
 package elements;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 public class Subtask extends Task {
     private Integer linkEpic; //номер связанного эпика для подзадачи
 

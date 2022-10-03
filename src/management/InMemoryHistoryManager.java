@@ -99,7 +99,6 @@ public class InMemoryHistoryManager implements HistoryManager {
             return historyOut;
         }
 
-
         public LinkedList<Integer> getTasksHistoryId() {
             LinkedList<Integer> out = new LinkedList<>();
             if (head != null) {

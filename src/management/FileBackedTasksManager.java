@@ -19,9 +19,19 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
     public static void main(String[] args) {
         TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
         //TaskManager taskManager = Managers.getDefault();
-       //taskManager.getListOfAllTask();
-       taskManager.getListOfAllSubtask();
-       //taskManager.getListOfAllEpic();
+        //taskManager.getListOfAllTask();
+        taskManager.getListOfAllSubtask();
+        //taskManager.getListOfAllEpic();
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(3);
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(4);
+        taskManager.getSubtaskById(5);
+        taskManager.getSubtaskById(5);
+        taskManager.getSubtaskById(5);
     }
 
     @Override
@@ -127,7 +137,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
                         value.getDescription() + "," +
                         value.getStartTime() + "," +
                         value.getDuration());
-
                 bufferedWriter.newLine();
             }
             for (Subtask value : getSubtasks().values()) {
