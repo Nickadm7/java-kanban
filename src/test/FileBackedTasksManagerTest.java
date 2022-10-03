@@ -1,7 +1,7 @@
 package test;
 
 import management.Managers;
-import management.TaskManager;
+import management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

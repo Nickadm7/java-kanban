@@ -5,7 +5,7 @@ import elements.Status;
 import elements.Subtask;
 import elements.Task;
 import management.InMemoryTaskManager;
-import management.TaskManager;
+import management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

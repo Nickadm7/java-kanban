@@ -1,7 +1,7 @@
 package elements;
 
 import management.InMemoryTaskManager;
-import management.TaskManager;
+import management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
