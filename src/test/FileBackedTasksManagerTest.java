@@ -1,5 +1,7 @@
-package management;
+package test;
 
+import management.Managers;
+import management.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

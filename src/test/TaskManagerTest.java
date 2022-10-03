@@ -1,9 +1,11 @@
-package management;
+package test;
 
 import elements.Epic;
 import elements.Status;
 import elements.Subtask;
 import elements.Task;
+import management.InMemoryTaskManager;
+import management.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package management;
+package test;
 
 class InMemoryTaskManagerTest extends TaskManagerTest {
 }
