@@ -12,7 +12,7 @@ public class Task {
     private String startTime; //дата и время начала выполнения задачи
     private Integer duration; //продолжительность выполнения задачи
     private String endTime; //дата и время конца выполнения задачи
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public Integer getDuration() {
         return duration;

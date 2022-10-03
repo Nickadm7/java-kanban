@@ -444,5 +444,4 @@ abstract class TaskManagerTest<T extends TaskManager> {
         taskManager.deleteAllEpics();
         assertEquals(taskManager.getEpicById(1), null, "Получаем не существующий Эпик.");
     }
-
 }

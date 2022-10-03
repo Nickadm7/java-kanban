@@ -244,8 +244,6 @@ public class InMemoryTaskManager implements TaskManager {
                         Comparator.nullsLast(Comparator.naturalOrder())));
         tasksByPriority.addAll(tasks.values());
         tasksByPriority.addAll(subtasks.values());
-        System.out.println();
-        System.out.println(tasksByPriority);
         return tasksByPriority;
     }
 
@@ -257,7 +255,6 @@ public class InMemoryTaskManager implements TaskManager {
             if (currentDataTime.isAfter(bufferStartTime) && currentDataTime.isBefore(bufferEndTime)) {
                 return false;
             }
-            System.out.println(task);
         }
         return true;
     }
@@ -332,5 +329,4 @@ public class InMemoryTaskManager implements TaskManager {
     public String getCurrentHistoryOnlyId() {
         return historyManager.getTasksHistoryId();
     }
-
 }

@@ -57,5 +57,4 @@ public interface TaskManager {
     ArrayList<InMemoryHistoryManager.Node> getCurrentHistory();
 
     String getCurrentHistoryOnlyId();
-
 }

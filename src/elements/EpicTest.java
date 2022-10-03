@@ -74,6 +74,4 @@ class EpicTest {
         taskManager.writeNewSubtask(subtask2);
         assertEquals(Status.IN_PROGRESS, epic.getStatus(), "Статус Эпиков не совпадают.");
     }
-
-
 }

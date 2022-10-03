@@ -15,24 +15,6 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         this.file = file;
     }
 
-    public static void main(String[] args) {
-        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
-        //TaskManager taskManager = Managers.getDefault();
-        //taskManager.getListOfAllTask();
-        taskManager.getListOfAllSubtask();
-        //taskManager.getListOfAllEpic();
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(1);
-        taskManager.getEpicById(3);
-        taskManager.getTaskById(1);
-        taskManager.getEpicById(4);
-        taskManager.getSubtaskById(5);
-        taskManager.getSubtaskById(5);
-        taskManager.getSubtaskById(5);
-    }
-
     @Override
     public void writeNewTask(Task newTask) {
         super.writeNewTask(newTask);
@@ -232,5 +214,23 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             return bufferSubtask;
         }
         return null;
+    }
+
+    public static void main(String[] args) {
+        TaskManager taskManager = Managers.loadFromFile(new File("src/resources/backup.csv"));
+        //TaskManager taskManager = Managers.getDefault();
+        //taskManager.getListOfAllTask();
+        taskManager.getListOfAllSubtask();
+        //taskManager.getListOfAllEpic();
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(3);
+        taskManager.getTaskById(1);
+        taskManager.getEpicById(4);
+        taskManager.getSubtaskById(5);
+        taskManager.getSubtaskById(5);
+        taskManager.getSubtaskById(5);
     }
 }
