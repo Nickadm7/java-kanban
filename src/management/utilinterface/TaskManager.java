@@ -55,7 +55,7 @@ public interface TaskManager {
 
     int generateNewId();
 
-    ArrayList<InMemoryHistoryManager.Node> getCurrentHistory();
+    ArrayList<Integer> getCurrentHistory();
 
     String getCurrentHistoryOnlyId();
 }

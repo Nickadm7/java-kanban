@@ -7,7 +7,7 @@ import java.util.*;
 
 public class InMemoryHistoryManager implements HistoryManager {
 
-    public static class Node<T> {
+    private static class Node<T> {
         public T data;
         public Node next;
         public Node prev;
@@ -45,7 +45,7 @@ public class InMemoryHistoryManager implements HistoryManager {
     }
 
     @Override
-    public ArrayList<Node> getHistory() {
+    public ArrayList<Integer> getHistory() {
         return history.getTasks();
     }
 
@@ -84,13 +84,13 @@ public class InMemoryHistoryManager implements HistoryManager {
             return newNode;
         }
 
-        public ArrayList<Node> getTasks() {
-            ArrayList<Node> historyOut = new ArrayList<>();
+        public ArrayList<Integer> getTasks() {
+            ArrayList<Integer> historyOut = new ArrayList<>();
             if (head != null) {
-                historyOut.add(head);
+                historyOut.add(head.nodeId);
                 Node current = head.next;
                 while (current != null) {
-                    historyOut.add(current);
+                    historyOut.add(current.nodeId);
                     current = current.next;
                 }
             }
