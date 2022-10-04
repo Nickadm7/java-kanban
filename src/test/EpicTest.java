@@ -1,5 +1,8 @@
-package elements;
+package test;
 
+import elements.Epic;
+import elements.Status;
+import elements.Subtask;
 import management.InMemoryTaskManager;
 import management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
