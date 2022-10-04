@@ -6,4 +6,4 @@ id,type,name,status,description,startTime,duration,epic
 6,SUBTASK,7 Проект,NEW,Разработать проект дома,01.10.2020 14:03,30,3
 7,SUBTASK,8 Финансы,NEW,Собрать нужную сумму денег,01.10.2020 14:03,30,3
  
-6,7,4,3,5,1
+2,6,7,4,3,5,1

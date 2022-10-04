@@ -66,16 +66,22 @@ public class InMemoryTaskManager implements TaskManager {
 
     @Override
     public void writeNewSubtask(Subtask newSubtask) {
-        Integer bufferId = generateNewId();
-        newSubtask.setId(bufferId);
-        newSubtask.setTaskType(SUBTASK);
-        if (validateTime(newSubtask.getStartTime(), newSubtask.getDuration())) {
-            subtasks.put(bufferId, newSubtask);
-            epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
-            historyManager.add(bufferId, subtasks.get(bufferId));
-            determineAndSetCorrectEpicStatus();
+        if (newSubtask.getLinkEpic() != null) {
+            Integer bufferId = generateNewId();
+            newSubtask.setId(bufferId);
+            newSubtask.setTaskType(SUBTASK);
+            if (validateTime(newSubtask.getStartTime(), newSubtask.getDuration())) {
+                subtasks.put(bufferId, newSubtask);
+                if (epics.get(subtasks.get(bufferId).getLinkEpic()) != null) {
+                    epics.get(subtasks.get(bufferId).getLinkEpic()).getListOfSubtasks().add(bufferId); // добавляем к эпику ссылку на новую подзадачу
+                    historyManager.add(bufferId, subtasks.get(bufferId));
+                    determineAndSetCorrectEpicStatus();
+                }
+            } else {
+                System.out.println("Данное время уже занято другой задачей!");
+            }
         } else {
-            System.out.println("Данное время уже занято другой задачей!");
+            System.out.println("У Subtack обязательно должен быть связанный Epic!");
         }
     }
 

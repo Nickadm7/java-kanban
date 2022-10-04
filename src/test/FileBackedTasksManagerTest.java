@@ -8,12 +8,8 @@ import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileBackedTasksManagerTest {
+class FileBackedTasksManagerTest extends TaskManagerTest{
     TaskManager taskManager = Managers.loadFromFile(new File("src/resources/loadfortest.csv"));
-    @Test
-    void loadFileCheckHistory() {
-        assertEquals(taskManager.getCurrentHistoryOnlyId(), "6,7,4,3,5,1", "Ошибка в загрузке истории");
-    }
 
     @Test
     void checkTackStartTime() {
