@@ -1,6 +1,7 @@
 package management;
 
 import elements.*;
+import elements.utilenum.Status;
 import management.utilinterface.HistoryManager;
 import management.utilinterface.TaskManager;
 
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static elements.TaskType.*;
+import static elements.utilenum.TaskType.*;
 
 public class InMemoryTaskManager implements TaskManager {
     private Integer id;

@@ -1,4 +1,4 @@
-package elements;
+package elements.utilenum;
 
 public enum TaskType {
     TASK,

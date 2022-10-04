@@ -1,5 +1,7 @@
 package elements;
 
+import elements.utilenum.Status;
+
 public class Subtask extends Task {
     private Integer linkEpic; //номер связанного эпика для подзадачи
 

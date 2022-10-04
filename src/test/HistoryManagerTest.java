@@ -1,6 +1,6 @@
 package test;
 
-import elements.Status;
+import elements.utilenum.Status;
 import elements.Task;
 import management.Managers;
 import management.utilinterface.TaskManager;

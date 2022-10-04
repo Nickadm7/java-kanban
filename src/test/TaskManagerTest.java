@@ -1,7 +1,7 @@
 package test;
 
 import elements.Epic;
-import elements.Status;
+import elements.utilenum.Status;
 import elements.Subtask;
 import elements.Task;
 import management.InMemoryTaskManager;
