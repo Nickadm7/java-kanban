@@ -1,7 +1,6 @@
 package management.utilinterface;
 
 import elements.Task;
-import management.InMemoryHistoryManager;
 
 import java.util.ArrayList;
 

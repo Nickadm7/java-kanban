@@ -59,5 +59,4 @@ class InMemoryTaskManagerTest extends TaskManagerTest {
         assertEquals(subtask1.getLinkEpic(), null, "Связанный эпик проставлен");
         assertEquals(taskManager.getSubtaskById(2), null, "Связанный эпик проставлен");
     }
-
 }
