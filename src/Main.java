@@ -1,29 +1,13 @@
-import elements.utilenum.Status;
-import elements.Task;
-import management.*;
+import management.Managers;
+import management.http.KVServer;
 import management.utilinterface.TaskManager;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
-        TaskManager taskManager = Managers.getDefault();
-        Task task1 = new Task(
-                "Test name",
-                "Test description",
-                Status.NEW,
-                "05.05.2022 14:03",
-                90);
-        taskManager.writeNewTask(task1);
-        Task task2 = new Task(
-                "Test name",
-                "Test description",
-                Status.NEW,
-                "05.09.2022 14:03",
-                90);
-        taskManager.writeNewTask(task2);
-        taskManager.getTaskById(1);
-        taskManager.getTaskById(2);
-        taskManager.getTaskById(2);
-        taskManager.getTaskById(1);
-        System.out.println(taskManager.getCurrentHistoryOnlyId());
+    public static void main(String[] args) throws IOException, InterruptedException {
+            KVServer server = new KVServer();
+            server.start();
+            TaskManager taskManager = Managers.getDefault();
     }
 }

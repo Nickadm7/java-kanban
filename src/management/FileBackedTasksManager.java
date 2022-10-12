@@ -11,11 +11,15 @@ import java.time.format.DateTimeFormatter;
 import static elements.utilenum.TaskType.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
-    private final File file;
+
+    private File file = new File("src/resources/backup.csv");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public FileBackedTasksManager(File file) {
         this.file = file;
+    }
+
+    public FileBackedTasksManager() {
     }
 
     @Override
@@ -99,7 +103,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         save();
     }
 
-    private void save() {
+    protected void save() {
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
             bufferedWriter.write("id,type,name,status,description,startTime,duration,epic");
             bufferedWriter.newLine();

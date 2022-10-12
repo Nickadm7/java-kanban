@@ -1,13 +1,15 @@
 package management;
 
+import management.http.HttpTaskManager;
 import management.utilinterface.HistoryManager;
 import management.utilinterface.TaskManager;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Managers {
-    public static TaskManager getDefault() {
-        return new InMemoryTaskManager();
+    public static TaskManager getDefault() throws IOException, InterruptedException {
+        return new HttpTaskManager("http://localhost:8078");
     }
 
     public static HistoryManager getDefaultHistory() {
