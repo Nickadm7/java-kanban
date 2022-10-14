@@ -2,10 +2,12 @@ package elements;
 
 import elements.utilenum.Status;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 
 public class Epic extends Task {
-    private String endTime; //дата и время конца выполнения задачи
+
+    private transient String endTime; //дата и время конца выполнения задачи
     private ArrayList<Integer> listOfSubtasks; //храним все подзадачи для эпика
 
     public Epic(String name, String description, Status status, String startTime, Integer duration) {
@@ -23,7 +25,7 @@ public class Epic extends Task {
     }
 
     @Override
-    public String getEndTime() {
+   public String getEndTime() {
         return endTime;
     }
 
@@ -45,7 +47,6 @@ public class Epic extends Task {
                 ", status='" + getStatus() + '\'' +
                 ", startTime='" + getStartTime() + '\'' +
                 ", duration(min)='" + getDuration() + '\'' +
-                ", endTime='" + getEndTime() + '\'' +
                 '}';
     }
 

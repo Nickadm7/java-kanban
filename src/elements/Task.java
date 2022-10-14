@@ -5,6 +5,7 @@ import elements.utilenum.TaskType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Task {
     private Integer id; //уникальный id
@@ -15,7 +16,6 @@ public class Task {
     private String startTime; //дата и время начала выполнения задачи
     private Integer duration; //продолжительность выполнения задачи
     private String endTime; //дата и время конца выполнения задачи
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public Integer getDuration() {
         return duration;
@@ -53,6 +53,7 @@ public class Task {
     }
 
     public void calculateEndTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         LocalDateTime startTime = LocalDateTime.parse(this.startTime, formatter);
         LocalDateTime stopTime = startTime.plusMinutes(this.duration);
         String stopTimeOut = stopTime.format(formatter);
@@ -107,10 +108,21 @@ public class Task {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", status=" + status +
-                ", taskType=" + taskType +
                 ", startTime='" + startTime + '\'' +
                 ", duration(min)=" + duration +
-                ", endTime='" + (LocalDateTime.parse(endTime, formatter)).format(formatter) + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task)) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id) && Objects.equals(name, task.name) && Objects.equals(description, task.description) && status == task.status && Objects.equals(startTime, task.startTime) && Objects.equals(duration, task.duration);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, description, status, startTime, duration);
     }
 }

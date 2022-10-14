@@ -42,10 +42,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
 
     @Override
     public Task getTaskById(Integer idTask) {
-        System.out.println("Ищем задачу под номером " + idTask);
         if (tasks.get(idTask) != null) {
-            System.out.print("id = " + idTask + " ");
-            System.out.println(tasks.get(idTask));
             historyManager.add(idTask, tasks.get(idTask));
             save();
             return tasks.get(idTask);

@@ -27,12 +27,23 @@ public class HttpTaskManager extends FileBackedTasksManager {
 
     @Override
     protected void save() {
-        List<Task> prepareTasks = new ArrayList<>(tasks.values());
-        System.out.println(prepareTasks);
-        kvTaskClient.put("Tasks", gson.toJson(prepareTasks));
-
-
-
-
+        if (!tasks.isEmpty()){
+            List<Task> prepareTasks = new ArrayList<>(tasks.values());
+            System.out.println("prepareTasks" + prepareTasks);
+            kvTaskClient.put("Tasks", gson.toJson(prepareTasks));
+            System.out.println("Метод put кладем" + gson.toJson(prepareTasks));
+        }
+        if (!epics.isEmpty()) {
+            List<Task> prepareEpic = new ArrayList<>(epics.values());
+            System.out.println("prepareEpic" + prepareEpic);
+            kvTaskClient.put("Epics", gson.toJson(prepareEpic));
+            System.out.println("Метод put кладем" + gson.toJson(prepareEpic));
+        }
+        if (!subtasks.isEmpty()) {
+            List<Task> prepareSubtask = new ArrayList<>(subtasks.values());
+            System.out.println("prepareSubtask" + prepareSubtask);
+            kvTaskClient.put("Subtasks", gson.toJson(prepareSubtask));
+            System.out.println("Метод put кладем" + gson.toJson(prepareSubtask));
+        }
     }
 }

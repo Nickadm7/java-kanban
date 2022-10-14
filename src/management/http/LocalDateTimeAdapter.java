@@ -23,6 +23,5 @@ public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
     @Override
     public LocalDateTime read(JsonReader jsonReader) throws IOException {
         return LocalDateTime.parse(jsonReader.nextString(), formatter);
-
     }
 }

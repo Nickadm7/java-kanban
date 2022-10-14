@@ -1,5 +1,7 @@
 package management.http;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -10,6 +12,7 @@ public class KVTaskClient{
     private HttpClient client;
     private String url;
     private String apiToken;
+    Gson gson = TasksToGsonTime.gson;
 
     public KVTaskClient(String url) throws IOException {
         this.url = url;

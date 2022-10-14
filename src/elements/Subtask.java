@@ -31,7 +31,6 @@ public class Subtask extends Task {
                 ", status='" + getStatus() + '\'' +
                 ", startTime='" + getStartTime() + '\'' +
                 ", duration(min)='" + getDuration() + '\'' +
-                ", endTime='" + getEndTime() + '\'' +
                 '}';
     }
 }
