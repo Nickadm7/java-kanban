@@ -80,9 +80,7 @@ public class Main {
             HttpResponse<String> httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
             Task currentTask = manager.getTaskById(1);
             JsonElement jsonElement = JsonParser.parseString(httpResponse.body());
-            System.out.println("jsonElement" + jsonElement);
             Task taskFromHttp = gson.fromJson(httpResponse.body(), Task.class);
-            System.out.println("taskFromHttp" + taskFromHttp);
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }

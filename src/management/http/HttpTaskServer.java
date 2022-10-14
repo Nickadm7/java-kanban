@@ -15,15 +15,15 @@ public class HttpTaskServer {
         this.manager = manager;
         httpServer = HttpServer.create(new InetSocketAddress(PORT), 0);
         httpServer.createContext("/tasks", new TaskHandlerPrioritized(manager));
-        httpServer.createContext("/tasks/history", new HistoryHandler(manager));
         httpServer.createContext("/tasks/task", new TaskHandler(manager));
         httpServer.createContext("/tasks/epic", new EpicHandler(manager));
         httpServer.createContext("/tasks/subtask", new SubtaskHandler(manager));
+        httpServer.createContext("/tasks/history", new HistoryHandler(manager));
         httpServer.start();
         System.out.println("HTTP-сервер запущен на " + PORT + " порту!");
     }
 
-    public void stop() {
-        httpServer.stop(1);
+    public void httpServerStop() {
+        httpServer.stop(0);
     }
 }
