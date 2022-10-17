@@ -2,8 +2,10 @@ package main.java.management;
 
 import main.java.elements.*;
 import main.java.elements.utilenum.Status;
+import main.java.elements.utilenum.TaskType;
 import main.java.management.utilexception.ManagerSaveException;
 
+import javax.lang.model.util.Elements;
 import java.io.*;
 import java.time.format.DateTimeFormatter;
 
@@ -11,7 +13,11 @@ import static main.java.elements.utilenum.TaskType.*;
 
 public class FileBackedTasksManager extends InMemoryTaskManager {
 
-    private File file = new File("src/main.resources/backup.csv");
+    private File file = new File(
+            "src" + File.separator
+                    + "main" + File.separator
+                    + "resources" + File.separator
+                    + "backup.csv");
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
 
     public FileBackedTasksManager(File file) {
@@ -149,7 +155,7 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
             String lastLine = null; //последняя линия history
             while ((line = reader.readLine()) != null) {
                 if (line.length() > 10) {
-                    if (line.split(",")[1].equals("TASK") | line.split(",")[1].equals("EPIC") | line.split(",")[1].equals("SUBTASK")) {
+                    if (line.split(",")[1].equals(TASK.toString()) | line.split(",")[1].equals(EPIC.toString()) | line.split(",")[1].equals(SUBTASK.toString())) {
                         fromString(line); //создаем задачи из строки
                     }
                     lastLine = line;
@@ -185,30 +191,30 @@ public class FileBackedTasksManager extends InMemoryTaskManager {
         String bufferName = (value.split(",")[2]);
         String bufferDescription = (value.split(",")[4]);
         Status bufferStatus = Status.NEW;
-        if (value.split(",")[3].equals("NEW")) {
+        if (value.split(",")[3].equals(Status.NEW.toString())) {
             bufferStatus = Status.NEW;
-        } else if (value.split(",")[3].equals("IN_PROGRESS")) {
+        } else if (value.split(",")[3].equals(Status.IN_PROGRESS.toString())) {
             bufferStatus = Status.IN_PROGRESS;
-        } else if (value.split(",")[3].equals("DONE")) {
+        } else if (value.split(",")[3].equals(Status.DONE.toString())) {
             bufferStatus = Status.DONE;
         }
         String bufferStartTime = (value.split(",")[5]);
         Integer bufferDuration = Integer.parseInt(value.split(",")[6]);
-        if (value.split(",")[1].equals("TASK")) {
+        if (value.split(",")[1].equals(TASK.toString())) {
             Task bufferTask = new Task(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration);
             bufferTask.setId(bufferId);
             bufferTask.setTaskType(TASK);
             tasks.put(bufferId, bufferTask);
             return bufferTask;
         }
-        if (value.split(",")[1].equals("EPIC")) {
+        if (value.split(",")[1].equals(EPIC.toString())) {
             Epic bufferEpic = new Epic(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration);
             bufferEpic.setId(bufferId);
             bufferEpic.setTaskType(EPIC);
             epics.put(bufferId, bufferEpic);
             return bufferEpic;
         }
-        if (value.split(",")[1].equals("SUBTASK")) {
+        if (value.split(",")[1].equals(SUBTASK.toString())) {
             Integer bufferLinkEpic = Integer.parseInt(value.split(",")[7]);
             Subtask bufferSubtask = new Subtask(bufferName, bufferDescription, bufferStatus, bufferStartTime, bufferDuration, bufferLinkEpic);
             bufferSubtask.setId(bufferId);

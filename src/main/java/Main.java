@@ -12,6 +12,9 @@ import main.java.http.HttpTaskServer;
 import main.java.http.KVServer;
 import main.java.http.TasksToGsonTime;
 
+import static main.java.elements.Сonstant.*;
+import static main.java.management.Managers.getNewKVServer;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -26,9 +29,9 @@ public class Main {
     private static final Gson gson = TasksToGsonTime.gson;
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        KVServer server = new KVServer();
+        KVServer server = getNewKVServer();
         server.start();
-        manager = new HttpTaskManager("http://localhost:8078");
+        manager = new HttpTaskManager(URL_ADRESS + PORT_8078);
         httpTaskServer = new HttpTaskServer(manager);
         Task testTask = new Task(
                 "Test name",
@@ -73,13 +76,13 @@ public class Main {
         manager.writeNewSubtask(subtask2);
 
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/task/?id=1");
+        URI uri = URI.create(URL_ADRESS + port8080 + "/tasks/task/?id=1");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
                 .build();
         try {
-            HttpResponse<String> httpResponse = httpClient.send(httpRequest,HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             Task currentTask = manager.getTaskById(1);
             JsonElement jsonElement = JsonParser.parseString(httpResponse.body());
             Task taskFromHttp = gson.fromJson(httpResponse.body(), Task.class);

@@ -1,4 +1,4 @@
-package test;
+package test.java;
 
 import main.java.elements.Epic;
 import main.java.elements.Subtask;

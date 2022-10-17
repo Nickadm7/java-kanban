@@ -298,9 +298,9 @@ public class InMemoryTaskManager implements TaskManager {
         }
 
         for (Integer key : epics.keySet()) {
-            Integer currentEpic = 0;
+            int currentEpic = 0;
             LocalDateTime currentStartTime = LocalDateTime.of(9999, 1, 1, 0, 0);
-            LocalDateTime currentEndTime = LocalDateTime.of(0001, 1, 1, 0, 0);
+            LocalDateTime currentEndTime = LocalDateTime.of(1, 1, 1, 0, 0);
             for (Integer currentSubtask : epics.get(key).getListOfSubtasks()) {
                 if (subtasks.get(currentSubtask) != null) {
                     currentEpic = currentEpic + subtasks.get(currentSubtask).getDuration();

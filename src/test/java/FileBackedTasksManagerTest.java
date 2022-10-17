@@ -1,15 +1,21 @@
-package test;
+package test.java;
 
 import main.java.management.Managers;
 import main.java.management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
+import test.java.TaskManagerTest;
 
 import java.io.File;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FileBackedTasksManagerTest extends TaskManagerTest{
-    TaskManager taskManager = Managers.loadFromFile(new File("src/main/resources/loadfortest.csv"));
+
+class FileBackedTasksManagerTest extends TaskManagerTest {
+    TaskManager taskManager = Managers.loadFromFile(new File(
+            "src" + File.separator
+                    + "main" + File.separator
+                    + "resources" + File.separator
+                    + "loadfortest.csv"));
 
     @Test
     void checkTackStartTime() {

@@ -1,4 +1,4 @@
-package test;
+package test.java;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import static main.java.elements.Сonstant.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class HttpTest {
@@ -38,7 +39,7 @@ public class HttpTest {
     void startServerCreateTask() throws IOException, InterruptedException {
         server = new KVServer();
         server.start();
-        manager = new HttpTaskManager("http://localhost:8078");
+        manager = new HttpTaskManager(URL_ADRESS + PORT_8078);
         httpTaskServer = new HttpTaskServer(manager);
         Task testTask = new Task(
                 "Test name",

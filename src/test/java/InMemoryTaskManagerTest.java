@@ -1,4 +1,4 @@
-package test;
+package test.java;
 
 import main.java.elements.Epic;
 import main.java.elements.Subtask;
@@ -6,6 +6,7 @@ import main.java.elements.utilenum.Status;
 import main.java.management.InMemoryTaskManager;
 import main.java.management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
+import test.java.TaskManagerTest;
 
 import java.util.ArrayList;
 
