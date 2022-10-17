@@ -74,9 +74,8 @@ public class Main {
                 3);
         manager.writeNewSubtask(subtask1);
         manager.writeNewSubtask(subtask2);
-
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create(URL_ADRESS + port8080 + "/tasks/task/?id=1");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task/?id=1");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()

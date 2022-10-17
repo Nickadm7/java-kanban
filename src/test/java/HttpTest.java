@@ -96,7 +96,7 @@ public class HttpTest {
     @Test
     void historyGetFromHttpAndCurrent() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/history");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/history");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -116,7 +116,7 @@ public class HttpTest {
     @Test
     void getAllTasksFromHttpAndCurrentPrioritized() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 +  "/tasks");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -136,7 +136,7 @@ public class HttpTest {
     @Test
     void getTasksFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/task/?id=1");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task/?id=1");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -153,7 +153,7 @@ public class HttpTest {
     @Test
     void getTasksFromHttpByIdNoExist() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/task/?id=111");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task/?id=111");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -165,7 +165,7 @@ public class HttpTest {
     @Test
     void getSubtaskFromHttpByIdNoExist() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/subtask/?id=111");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask/?id=111");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -177,7 +177,7 @@ public class HttpTest {
     @Test
     void getEpicFromHttpByIdNoExist() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/epic/?id=111");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic/?id=111");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -189,7 +189,7 @@ public class HttpTest {
     @Test
     void getAllEpicFromHttpAndCurrent() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/epic");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -209,7 +209,7 @@ public class HttpTest {
     @Test
     void getAllSubtaskFromHttpAndCurrent() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/subtask");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -229,7 +229,7 @@ public class HttpTest {
     @Test
     void getSubtaskFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/subtask/?id=4");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask/?id=4");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -245,7 +245,7 @@ public class HttpTest {
     @Test
     void getEpicFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/epic/?id=3");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic/?id=3");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .GET()
@@ -261,7 +261,7 @@ public class HttpTest {
     @Test
     void deleteTasksFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/task/?id=1");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task/?id=1");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .DELETE()
@@ -282,7 +282,7 @@ public class HttpTest {
     @Test
     void deleteSubtaskFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/subtask/?id=4");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask/?id=4");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .DELETE()
@@ -303,7 +303,7 @@ public class HttpTest {
     @Test
     void deleteEpicFromHttpByIdCurrent() throws IOException, InterruptedException {
         HttpClient httpClient = HttpClient.newHttpClient();
-        URI uri = URI.create("http://localhost:8080/tasks/epic/?id=3");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic/?id=3");
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
                 .DELETE()
@@ -331,7 +331,7 @@ public class HttpTest {
                 "17.10.2021 14:03",
                 45);
         String json = gson.toJson(testTaskTest);
-        URI uri = URI.create("http://localhost:8080/tasks/task?id=1");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task?id=1");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -370,7 +370,7 @@ public class HttpTest {
                 45,
                 epicSubtasks);
         String json = gson.toJson(epicTest);
-        URI uri = URI.create("http://localhost:8080/tasks/epic?id=3");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic?id=3");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -408,7 +408,7 @@ public class HttpTest {
                 15,
                 3);
         String json = gson.toJson(subtaskTest);
-        URI uri = URI.create("http://localhost:8080/tasks/subtask?id=4");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask?id=4");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -445,7 +445,7 @@ public class HttpTest {
                 "17.10.2021 14:03",
                 45);
         String json = gson.toJson(testTask);
-        URI uri = URI.create("http://localhost:8080/tasks/task");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -457,7 +457,7 @@ public class HttpTest {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        URI uri1 = URI.create("http://localhost:8080/tasks/task?id=6");
+        URI uri1 = URI.create(URL_ADRESS + PORT_8080 + "/tasks/task?id=6");
         HttpRequest GetRequest = HttpRequest.newBuilder()
                 .uri(uri1)
                 .GET()
@@ -485,7 +485,7 @@ public class HttpTest {
                 45,
                 epicSubtasks);
         String json = gson.toJson(epicTest);
-        URI uri = URI.create("http://localhost:8080/tasks/epic");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -497,7 +497,7 @@ public class HttpTest {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        URI uri1 = URI.create("http://localhost:8080/tasks/epic?id=6");
+        URI uri1 = URI.create(URL_ADRESS + PORT_8080 + "/tasks/epic?id=6");
         HttpRequest GetRequest = HttpRequest.newBuilder()
                 .uri(uri1)
                 .GET()
@@ -524,7 +524,7 @@ public class HttpTest {
                 15,
                 3);
         String json = gson.toJson(subtaskTest);
-        URI uri = URI.create("http://localhost:8080/tasks/subtask");
+        URI uri = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask");
         final HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(uri)
@@ -536,7 +536,7 @@ public class HttpTest {
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-        URI uri1 = URI.create("http://localhost:8080/tasks/subtask?id=6");
+        URI uri1 = URI.create(URL_ADRESS + PORT_8080 + "/tasks/subtask?id=6");
         HttpRequest GetRequest = HttpRequest.newBuilder()
                 .uri(uri1)
                 .GET()
