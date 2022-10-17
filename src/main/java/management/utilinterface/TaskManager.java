@@ -7,6 +7,7 @@ import main.java.elements.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 
 public interface TaskManager {
@@ -46,7 +47,7 @@ public interface TaskManager {
 
     void deleteSubtaskById(Integer idSubtask);
 
-    ArrayList<Integer> getSubtaskForEpicById(Integer idEpic);
+    List<Integer> getSubtaskForEpicById(Integer idEpic);
 
     Set<Task> getPrioritizedTasks();
 
@@ -54,7 +55,7 @@ public interface TaskManager {
 
     int generateNewId();
 
-    ArrayList<Integer> getCurrentHistory();
+    List<Integer> getCurrentHistory();
 
     String getCurrentHistoryOnlyId();
 }

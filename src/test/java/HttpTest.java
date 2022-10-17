@@ -145,7 +145,6 @@ public class HttpTest {
         assertEquals(200, httpResponse.statusCode(), "Ответ от сервера не 200");
         Task currentTask = manager.getTaskById(1);
         JsonElement jsonElement = JsonParser.parseString(httpResponse.body());
-        System.out.println("jsonElement в методе теста" + jsonElement);
         Task taskFromHttp = gson.fromJson(httpResponse.body(), Task.class);
         assertEquals(currentTask, taskFromHttp, "Неверный возврат задачи по id номеру");
     }
@@ -361,7 +360,7 @@ public class HttpTest {
     @Test
     void updateEpicByIdFromHttp() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        ArrayList<Integer> epicSubtasks = new ArrayList<>();
+        List<Integer> epicSubtasks = new ArrayList<>();
         Epic epicTest = new Epic(
                 "Update Test name Epic",
                 "Test description Epic",
@@ -476,7 +475,7 @@ public class HttpTest {
     @Test
     void postNewEpicFromHttp() {
         HttpClient httpClient = HttpClient.newHttpClient();
-        ArrayList<Integer> epicSubtasks = new ArrayList<>();
+        List<Integer> epicSubtasks = new ArrayList<>();
         Epic epicTest = new Epic(
                 "Update Test name Epic",
                 "Test description Epic",

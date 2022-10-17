@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -322,7 +323,7 @@ abstract class TaskManagerTest<T extends TaskManager> {
     @Test
     void getSubtaskForEpicById() {
         assertEquals(taskManager.getSubtaskForEpicById(1), null, "Неправильный id для Эпика.");
-        ArrayList<Integer> epicSubtasks = new ArrayList<>();
+        List<Integer> epicSubtasks = new ArrayList<>();
         Epic epic1 = new Epic(
                 "Test name Epic",
                 "Test description Epic",
