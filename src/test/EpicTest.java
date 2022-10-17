@@ -1,10 +1,10 @@
 package test;
 
-import elements.Epic;
-import elements.utilenum.Status;
-import elements.Subtask;
-import management.InMemoryTaskManager;
-import management.utilinterface.TaskManager;
+import main.java.elements.Epic;
+import main.java.elements.utilenum.Status;
+import main.java.elements.Subtask;
+import main.java.management.InMemoryTaskManager;
+import main.java.management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

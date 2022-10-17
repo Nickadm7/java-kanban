@@ -1,7 +1,7 @@
 package test;
 
-import management.Managers;
-import management.utilinterface.TaskManager;
+import main.java.management.Managers;
+import main.java.management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -9,7 +9,7 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class FileBackedTasksManagerTest extends TaskManagerTest{
-    TaskManager taskManager = Managers.loadFromFile(new File("src/resources/loadfortest.csv"));
+    TaskManager taskManager = Managers.loadFromFile(new File("src/main/resources/loadfortest.csv"));
 
     @Test
     void checkTackStartTime() {

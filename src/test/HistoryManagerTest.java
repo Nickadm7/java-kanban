@@ -1,11 +1,11 @@
 package test;
 
-import elements.Epic;
-import elements.Subtask;
-import elements.utilenum.Status;
-import elements.Task;
-import management.Managers;
-import management.utilinterface.TaskManager;
+import main.java.elements.Epic;
+import main.java.elements.Subtask;
+import main.java.elements.utilenum.Status;
+import main.java.elements.Task;
+import main.java.management.Managers;
+import main.java.management.utilinterface.TaskManager;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
