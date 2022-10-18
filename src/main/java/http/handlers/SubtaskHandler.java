@@ -12,8 +12,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 
-import static jdk.internal.util.xml.XMLStreamWriter.DEFAULT_CHARSET;
-
 public class SubtaskHandler implements HttpHandler {
     TaskManager manager;
     Gson gson = TasksToGsonTime.gson;
@@ -26,7 +24,7 @@ public class SubtaskHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();
         InputStream inputStream = exchange.getRequestBody();
-        String body = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
+        String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         String requestUriQuery = exchange.getRequestURI().getQuery();
         String response;
         switch (method) {

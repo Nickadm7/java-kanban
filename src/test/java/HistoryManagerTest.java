@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class HistoryManagerTest {
-    TaskManager taskManager = Managers.getDefault();
+    TaskManager taskManager = Managers.getHistoryManagers();
 
     HistoryManagerTest() throws IOException, InterruptedException {
     }

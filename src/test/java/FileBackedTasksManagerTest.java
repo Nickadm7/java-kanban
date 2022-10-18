@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FileBackedTasksManagerTest extends TaskManagerTest {
     TaskManager taskManager = Managers.loadFromFile(new File(
             "src" + File.separator
-                    + "main" + File.separator
+                    + "test" + File.separator
                     + "resources" + File.separator
                     + "loadfortest.csv"));
 

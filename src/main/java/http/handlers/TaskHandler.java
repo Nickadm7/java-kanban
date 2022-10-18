@@ -14,7 +14,6 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 public class TaskHandler implements HttpHandler {
-    private static final Charset DEFAULT_CHARSET = StandardCharsets.UTF_8;
     private final TaskManager manager;
     private final Gson gson = TasksToGsonTime.gson;
 
@@ -26,7 +25,7 @@ public class TaskHandler implements HttpHandler {
     public void handle(HttpExchange exchange) throws IOException {
         String method = exchange.getRequestMethod();
         InputStream inputStream = exchange.getRequestBody();
-        String body = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
+        String body = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         String requestUriQuery = exchange.getRequestURI().getQuery();
         String response;
         switch (method) {

@@ -29,4 +29,8 @@ public class Managers {
         fileBackedTasksManager.loadAllFromFile(file);
         return fileBackedTasksManager;
     }
+
+    public static TaskManager getHistoryManagers() {
+        return new InMemoryTaskManager();
+    }
 }

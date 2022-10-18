@@ -12,7 +12,6 @@ public class KVTaskClient{
     private HttpClient client;
     private String url;
     private String apiToken;
-    Gson gson = TasksToGsonTime.gson;
 
     public KVTaskClient(String url) throws IOException {
         this.url = url;
